@@ -12,6 +12,7 @@ class App extends React.Component{
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
+            <p>Website is under construction</p>
             <a
                 className="App-link"
                 target="_blank"
