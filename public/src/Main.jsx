@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react'
 import {Redirect, Route, Switch} from "react-router";
-import UserProfile from "../components/UserProfile";
-import MainPage from "../components/MainPage";
+import UserProfile from "../components/routes/UserProfile";
+import MainPage from "../components/routes/MainPage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Login from "./Login";
-import Registraion from "./Registraion";
+import Login from "./routes/validation/Login";
+import Registraion from "./routes/validation/Registraion";
 
 export default class extends React.Component {
     constructor(props) {

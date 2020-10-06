@@ -1,6 +1,5 @@
 import React from 'react'
-import LogComp from '../components/LoginComponent'
-
+import RegComp from '../../components/routes/validation/RegistrationComponent'
 
 export default class extends React.Component {
     constructor(props) {
@@ -12,7 +11,7 @@ export default class extends React.Component {
 
     render() {
         return (
-            <LogComp/>
+            <RegComp/>
         );
     }
 }
