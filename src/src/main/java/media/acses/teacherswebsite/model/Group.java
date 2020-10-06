@@ -3,7 +3,7 @@ package media.acses.teacherswebsite.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "groups")
@@ -14,5 +14,5 @@ public class Group extends BaseEntity {
     private String name;
 
     @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
-    private List<User> users;
+    private Set<User> users;
 }
