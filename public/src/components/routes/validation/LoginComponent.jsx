@@ -1,6 +1,6 @@
 import React from "react";
 
-import s from '../../../stylesheets/valid.module.css'
+import s from '../../../stylesheets/routes/valid.module.css'
 
 import logo from '../../../img/logo.svg'
 import {Link} from "react-router-dom";
@@ -26,7 +26,7 @@ export default (props) => {
                 </div>
                 <div className={s.login_buttons}>
                     <Link to={'/register'}>Регистрация</Link>
-                    <Link to={'/recover'}>Забыли пароль</Link>
+                    <Link to={'/recovery'}>Забыли пароль</Link>
                 </div>
                 <Link to={'/profile'} className={s.submit_button}>Войти</Link>
             </div>

@@ -1,11 +1,12 @@
 import React, {Fragment} from 'react'
 import {Redirect, Route, Switch} from "react-router";
-import UserProfile from "../components/routes/UserProfile";
-import MainPage from "../components/routes/MainPage";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Login from "./routes/validation/Login";
-import Registraion from "./routes/validation/Registraion";
+import UserProfile from "./components/routes/UserProfile";
+import MainPage from "./components/routes/MainPage";
+import Header from "./components/global/Header";
+import Footer from "./components/global/Footer";
+import Login from "./containers/routes/validation/Login";
+import Registraion from "./containers/routes/validation/Registraion";
+import Recovery from "./containers/routes/validation/Recovery";
 
 export default class extends React.Component {
     constructor(props) {
@@ -22,6 +23,7 @@ export default class extends React.Component {
                 <Switch>
                     <Route exact path={'/login'} component={Login}/>
                     <Route exact path={'/register'} component={Registraion}/>
+                    <Route exact path={'/recovery'} component={Recovery}/>
                     <Route exact path={'/profile'}>
                         <UserProfile/>
                         <Footer/>

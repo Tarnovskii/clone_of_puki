@@ -1,5 +1,5 @@
 import React from 'react'
-import LogComp from '../../components/routes/validation/LoginComponent'
+import LogComp from '../../../components/routes/validation/LoginComponent'
 
 
 export default class extends React.Component {

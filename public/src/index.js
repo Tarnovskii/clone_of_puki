@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
-import MainContainer from './containers/Main'
+import MainContainer from './Main'
 
 ReactDOM.render(
     <React.StrictMode>

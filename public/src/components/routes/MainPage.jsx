@@ -1,11 +1,11 @@
 import React from "react";
-import s from '../stylesheets/mainPage.module.css'
-import Article from "./Article";
+import s from '../../stylesheets/routes/mainPage.module.css'
+import Article from "../global/Article";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import arrow from '../img/arrow.svg'
-import LinkTile from "./LinkTile";
+import arrow from '../../img/arrow.svg'
+import LinkTile from "../global/LinkTile";
 
 import {Link} from "react-router-dom";
 

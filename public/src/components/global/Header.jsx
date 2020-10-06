@@ -1,7 +1,7 @@
 import React from "react";
-import s from '../stylesheets/header.module.css'
+import s from '../../stylesheets/global/header.module.css'
 
-import logo from '../img/logo.svg'
+import logo from '../../img/logo.svg'
 
 export default () => {
     return (

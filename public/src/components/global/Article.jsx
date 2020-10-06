@@ -1,6 +1,6 @@
 import React from "react";
 
-import s from '../stylesheets/article.module.css'
+import s from '../../stylesheets/global/article.module.css'
 
 export default (props) => {
     return (
