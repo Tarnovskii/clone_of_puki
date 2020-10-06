@@ -1,0 +1,113 @@
+.wrapper {
+  position: absolute;
+  display: block;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 512px;
+}
+.wrapper h2 {
+  margin-bottom: 20px;
+}
+
+.fields_wrapper {
+  box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  background: white;
+  height: 512px;
+  display: flex;
+  padding: 50px 20px 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.fields_wrapper p {
+  width: 370px;
+  font-size: 9px;
+  margin-bottom: 10px;
+}
+
+.logo_wrapper {
+  text-align: center;
+}
+.logo_wrapper h2 {
+  margin-top: 10px;
+}
+.logo_wrapper img {
+  display: block;
+  filter: invert(1);
+  width: 135px;
+}
+
+.fields {
+  height: auto;
+}
+.fields label {
+  display: block;
+  width: 370px;
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+.fields input, .fields select {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 370px;
+  border-radius: 2px;
+  font-size: 1.1em;
+  padding: 10px;
+  height: 35px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+}
+.fields select {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.login_buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 370px;
+}
+.login_buttons a {
+  text-decoration: none;
+  padding-top: 9px;
+  transition: 0.5s all;
+  color: white;
+  text-align: center;
+  width: 160px;
+  height: 35px;
+  background: #AEB7BB;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.login_buttons a:hover {
+  box-shadow: 5px 5px 13px -4px rgba(0, 0, 0, 0.75);
+}
+
+.submit_button {
+  margin-top: 20px;
+  padding-top: 12px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s all;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 200px;
+  height: 40px;
+  background: #243E49;
+  border-radius: 20px;
+}
+.submit_button:hover {
+  box-shadow: 5px 5px 13px -4px rgba(0, 0, 0, 0.75);
+}
+
+/*# sourceMappingURL=valid.module.css.map */

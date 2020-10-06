@@ -1,5 +1,5 @@
 import React from 'react'
-import s from '../stylesheets/link.module.css'
+import s from '../../stylesheets/models/link.module.css'
 
 export default () => {
     return (

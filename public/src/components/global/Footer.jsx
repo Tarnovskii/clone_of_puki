@@ -1,8 +1,8 @@
 import React from "react";
 
-import s from '../stylesheets/footer.module.css'
+import s from '../../stylesheets/global/footer.module.css'
 
-import logo from '../img/logo.svg'
+import logo from '../../img/logo.svg'
 
 export default () => {
     return (

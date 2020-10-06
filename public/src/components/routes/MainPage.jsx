@@ -1,20 +1,21 @@
 import React from "react";
-import s from '../stylesheets/mainPage.module.css'
-import Article from "./Article";
+import s from '../../stylesheets/routes/mainPage.module.css'
 
-import arrow from '../img/arrow.svg'
-import LinkTile from "./LinkTile";
+import {Link} from "react-router-dom";
+import News from "../../containers/global/News";
+import UsefullLinks from "../global/UsefullLinks";
 
 
 export default () => {
     return (
         <main className={s.main_wrapper}>
             <section className={s.banner}>
+
             </section>
             <section className={s.welcome_block}>
                 <div className={s.welcome_block_header}>
                     <b>Добро пожаловать на портал ПУКI!</b>
-                    <a>Вход/регистрация</a>
+                    <Link to={'/login'}>Вход/регистрация</Link>
                 </div>
                 <div className={s.hallo_world}>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,32 +36,10 @@ export default () => {
                             egestas quisque</p>
                     </div>
                 </div>
-                <div className={s.small_news_line}>
-                    <p className={s.article_block_header}>Последние новости</p>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                </div>
+                <News type={'small'}/>
             </section>
-            <section className={s.news_line}>
-                <h3>Новостная лента</h3>
-                <Article type={"medium"}/>
-                <Article type={"medium"}/>
-                <Article type={"medium"}/>
-                <div className={s.controller}>
-                    <img src={arrow}/>Стр 2/28 <img src={arrow}/>
-                </div>
-            </section>
-            <section className={s.links}>
-                <h3>Полезные ссылки</h3>
-                <LinkTile/>
-                <LinkTile/>
-                <LinkTile/>
-                <LinkTile/>
-            </section>
+            <News type={'medium'}/>
+            <UsefullLinks/>
         </main>
     )
 }

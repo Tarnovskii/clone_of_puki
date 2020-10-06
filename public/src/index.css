@@ -4,11 +4,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 800px;
+  min-height: 100vh;
 }
 
 #root {
-  background: #E5E5E5;
+  background: #FAFBFC;
   min-height: inherit;
   min-width: inherit;
   height: inherit;

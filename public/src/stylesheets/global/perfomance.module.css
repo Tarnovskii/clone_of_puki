@@ -1,0 +1,139 @@
+.wrapper {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.header {
+  margin-left: 50px;
+  font-size: 21px;
+}
+.header span {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.content {
+  border: 1px solid #CBCBCB;
+  margin-top: 30px;
+  display: flex;
+  height: 125px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.28);
+  background: #DADFE0;
+}
+.content img {
+  width: 49px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.content img:nth-child(1) {
+  transform: rotate(180deg);
+}
+.content img:nth-child(3) {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.table_wrapper {
+  background: #FFFFFF;
+  overflow-x: scroll;
+}
+.table_wrapper::-webkit-scrollbar, .table_wrapper::-webkit-scrollbar-track {
+  height: 5px;
+  background: #E5E5E5;
+  border-radius: 5px;
+}
+.table_wrapper::-webkit-scrollbar-thumb {
+  background: rgba(36, 62, 73, 0.5);
+  border-radius: 5px;
+  height: 5px;
+}
+.table_wrapper table, .table_wrapper td, .table_wrapper tr, .table_wrapper img {
+  height: 100%;
+  border: 1px solid #CBCBCB;
+}
+.table_wrapper tr {
+  display: flex;
+  flex-direction: row;
+}
+
+.perfomance_tile {
+  max-width: 120px;
+  min-width: 120px;
+  vertical-align: top;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.date {
+  font-size: 16px;
+}
+
+.description {
+  font-size: 14px;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  padding-left: 20px;
+  white-space: nowrap;
+  line-height: 20px;
+}
+.description:before {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  left: 0;
+  padding: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 100%;
+}
+
+.mark {
+  text-align: center;
+  font-size: 42px;
+  width: 100%;
+  display: block;
+}
+.mark span:nth-child(1) {
+  vertical-align: 5px;
+}
+.mark span:nth-child(2) {
+  vertical-align: sub;
+}
+
+.description[type=lab]:before {
+  background: darkblue;
+}
+
+.description[type=kr]:before {
+  background: darkred;
+}
+
+.description[type=pr]:before {
+  background: yellow;
+}
+
+.description[type=lec]:before {
+  background: green;
+}
+
+.mark[coff=bad] {
+  color: red;
+}
+
+.mark[coff=ok] {
+  color: #9b6402;
+}
+
+.mark[coff=good] {
+  color: #e5ff00;
+}
+
+.mark[coff=perfect] {
+  color: #76c800;
+}
+
+/*# sourceMappingURL=perfomance.module.css.map */
