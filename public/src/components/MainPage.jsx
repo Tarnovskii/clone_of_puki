@@ -2,19 +2,24 @@ import React from "react";
 import s from '../stylesheets/mainPage.module.css'
 import Article from "./Article";
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import arrow from '../img/arrow.svg'
 import LinkTile from "./LinkTile";
+
+import {Link} from "react-router-dom";
 
 
 export default () => {
     return (
         <main className={s.main_wrapper}>
             <section className={s.banner}>
+
             </section>
             <section className={s.welcome_block}>
                 <div className={s.welcome_block_header}>
                     <b>Добро пожаловать на портал ПУКI!</b>
-                    <a>Вход/регистрация</a>
+                    <Link to={'/login'}>Вход/регистрация</Link>
                 </div>
                 <div className={s.hallo_world}>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;
