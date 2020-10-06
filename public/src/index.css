@@ -8,6 +8,7 @@ body {
 }
 
 #root {
+  background: #E5E5E5;
   min-height: inherit;
   min-width: inherit;
   height: inherit;
