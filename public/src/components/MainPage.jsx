@@ -12,8 +12,11 @@ export default () => {
             <section className={s.banner}>
             </section>
             <section className={s.welcome_block}>
-                <div className={s.hallo_world}>
+                <div className={s.welcome_block_header}>
                     <b>Добро пожаловать на портал ПУКI!</b>
+                    <a>Вход/регистрация</a>
+                </div>
+                <div className={s.hallo_world}>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo augue id tristique semper
                         egestas quisque. Ullamcorper sed arcu diam ipsum, aliquet. Arcu, adipiscing ipsum egestas arcu,
@@ -34,6 +37,10 @@ export default () => {
                 </div>
                 <div className={s.small_news_line}>
                     <p className={s.article_block_header}>Последние новости</p>
+                    <Article type={"small"}/>
+                    <Article type={"small"}/>
+                    <Article type={"small"}/>
+                    <Article type={"small"}/>
                     <Article type={"small"}/>
                     <Article type={"small"}/>
                 </div>
