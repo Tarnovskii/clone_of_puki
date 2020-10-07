@@ -1,13 +1,9 @@
 import React from "react";
 import s from '../../stylesheets/routes/mainPage.module.css'
-import Article from "../global/Article";
-
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-
-import arrow from '../../img/arrow.svg'
-import LinkTile from "../global/LinkTile";
 
 import {Link} from "react-router-dom";
+import News from "../../containers/global/News";
+import UsefullLinks from "../global/UsefullLinks";
 
 
 export default () => {
@@ -40,32 +36,10 @@ export default () => {
                             egestas quisque</p>
                     </div>
                 </div>
-                <div className={s.small_news_line}>
-                    <p className={s.article_block_header}>Последние новости</p>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                    <Article type={"small"}/>
-                </div>
+                <News type={'small'}/>
             </section>
-            <section className={s.news_line}>
-                <h3>Новостная лента</h3>
-                <Article type={"medium"}/>
-                <Article type={"medium"}/>
-                <Article type={"medium"}/>
-                <div className={s.controller}>
-                    <img src={arrow}/>Стр 2/28 <img src={arrow}/>
-                </div>
-            </section>
-            <section className={s.links}>
-                <h3>Полезные ссылки</h3>
-                <LinkTile/>
-                <LinkTile/>
-                <LinkTile/>
-                <LinkTile/>
-            </section>
+            <News type={'medium'}/>
+            <UsefullLinks/>
         </main>
     )
 }

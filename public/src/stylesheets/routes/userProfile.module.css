@@ -1,3 +1,97 @@
+.wrapper {
+  background: white;
+  max-width: 1040px;
+  padding-bottom: 50px;
+  min-height: inherit;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.banner {
+  height: 200px;
+  background: #243E49;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 48px;
+  background: url("../../img/bannerImages/banner1.jpg") no-repeat center center;
+  background-size: cover;
+  box-shadow: 0px 3px 5px -4px rgba(0, 0, 0, 0.75);
+}
+.banner h2 {
+  background: rgba(0, 0, 0, 0.5);
+  display: block;
+  text-align: left;
+  position: absolute;
+  font-weight: bold;
+  padding: 10px 30px 10px 80px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px #000000;
+}
+
+.content {
+  padding: 50px 70px 70px;
+}
+.content h3 {
+  font-size: 28px;
+  font-weight: 200;
+}
+.content h3 span {
+  font-weight: bold;
+}
+
+.calendar {
+  margin-top: 50px;
+}
+.calendar b {
+  margin-left: 50px;
+  font-size: 22px;
+}
+.calendar table {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.28);
+  width: 100%;
+}
+.calendar table tr {
+  height: 115px;
+}
+.calendar table td {
+  font-size: 32px;
+  font-weight: lighter;
+  padding: 5px;
+  vertical-align: top;
+  width: 133px;
+}
+.calendar table, .calendar td, .calendar tr {
+  border: 1px solid #CBCBCB;
+}
+
+.controller {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  filter: contrast(0.7);
+  max-width: 200px;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.controller img {
+  display: block;
+  cursor: pointer;
+}
+.controller img:nth-child(1) {
+  transform: rotate(180deg);
+}
+
+.progress {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+.progress b {
+  margin-left: 50px;
+  font-size: 22px;
+}
 
 /*# sourceMappingURL=userProfile.module.css.map */
