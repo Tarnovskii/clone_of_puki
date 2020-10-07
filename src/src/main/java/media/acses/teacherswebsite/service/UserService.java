@@ -1,12 +1,13 @@
 package media.acses.teacherswebsite.service;
 
 import media.acses.teacherswebsite.model.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
-    User register(User user);
+    boolean register(User user);
 
     List<User> getAll();
 
@@ -14,5 +15,5 @@ public interface UserService {
 
     User findById(Long id);
 
-    void delete(Long id);
+    boolean delete(Long id);
 }

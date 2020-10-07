@@ -26,15 +26,6 @@
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="created" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false"/>
-            </column>
-            <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
 
@@ -46,34 +37,16 @@
             <column name="name" type="VARCHAR(100)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="created" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false"/>
-            </column>
-            <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
 
     <changeSet id="1.0.2" author="yuriy.paley">
-        <createTable tableName="groups">
+        <createTable tableName="classes">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(100)">
                 <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="created" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false"/>
-            </column>
-            <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
-                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -89,11 +62,11 @@
     </changeSet>
 
     <changeSet id="1.0.4" author="yuriy.paley">
-        <createTable tableName="user_groups">
+        <createTable tableName="user_classes">
             <column name="user_id" type="BIGINT">
             </column>
 
-            <column name="group_id" type="BIGINT">
+            <column name="class_id" type="BIGINT">
             </column>
         </createTable>
     </changeSet>
@@ -119,9 +92,9 @@
     </changeSet>
 
     <changeSet id="1.0.7" author="yuriy.paley">
-        <addForeignKeyConstraint baseTableName="user_groups"
+        <addForeignKeyConstraint baseTableName="user_classes"
                                  baseColumnNames="user_id"
-                                 constraintName="fk_user_groups_user"
+                                 constraintName="fk_user_classes_user"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
                                  referencedTableName="users"
@@ -129,12 +102,12 @@
     </changeSet>
 
     <changeSet id="1.0.8" author="yuriy.paley">
-        <addForeignKeyConstraint baseTableName="user_groups"
-                                 baseColumnNames="group_id"
-                                 constraintName="fk_user_groups_group"
+        <addForeignKeyConstraint baseTableName="user_classes"
+                                 baseColumnNames="class_id"
+                                 constraintName="fk_user_classes_class"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
-                                 referencedTableName="groups"
+                                 referencedTableName="classes"
                                  referencedColumnNames="id" />
     </changeSet>
 

@@ -3,17 +3,16 @@ package media.acses.teacherswebsite.service.impl;
 import media.acses.teacherswebsite.model.Role;
 import media.acses.teacherswebsite.model.Status;
 import media.acses.teacherswebsite.model.User;
-import media.acses.teacherswebsite.repository.GroupRepository;
 import media.acses.teacherswebsite.repository.RoleRepository;
 import media.acses.teacherswebsite.repository.UserRepository;
 import media.acses.teacherswebsite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,18 +33,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(User user) {
+    public boolean register(User user) {
+        User userFromDB = userRepository.findByUsername(user.getUsername());
+
+        if (userFromDB != null) {
+            return false;
+        }
+
         Role roleUser = roleRepository.findByName("ROLE_USER");
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(roleUser);
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(userRoles);
-        user.setStatus(Status.ACTIVE);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        User registeredUser = userRepository.save(user);
+        userRepository.save(user);
 
-        return registeredUser;
+        return true;
     }
 
     @Override
@@ -67,7 +71,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Long id) {
-        userRepository.deleteById(id);
+    public boolean delete(Long id) {
+        if (userRepository.findById(id).isPresent()) {
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("User with username: " + username + " not found");
+        }
+
+        return user;
     }
 }
