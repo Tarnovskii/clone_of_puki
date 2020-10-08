@@ -1,34 +1,37 @@
 package media.acses.teacherswebsite.service.impl;
 
 import media.acses.teacherswebsite.model.Role;
-import media.acses.teacherswebsite.model.Status;
 import media.acses.teacherswebsite.model.User;
+import media.acses.teacherswebsite.repository.ClassRepository;
 import media.acses.teacherswebsite.repository.RoleRepository;
 import media.acses.teacherswebsite.repository.UserRepository;
 import media.acses.teacherswebsite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final ClassRepository classRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImpl(
             UserRepository userRepository,
             RoleRepository roleRepository,
+            ClassRepository classRepository,
             BCryptPasswordEncoder passwordEncoder
     ) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.classRepository = classRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -77,16 +80,5 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("User with username: " + username + " not found");
-        }
-
-        return user;
     }
 }

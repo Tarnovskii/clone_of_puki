@@ -14,8 +14,8 @@ public class Class extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "classes", fetch = FetchType.LAZY)
-    private Set<User> users;
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
+    private Set<User> students;
 
     @Override
     public boolean equals(Object o) {

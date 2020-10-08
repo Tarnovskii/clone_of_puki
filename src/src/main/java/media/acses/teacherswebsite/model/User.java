@@ -2,7 +2,6 @@ package media.acses.teacherswebsite.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -12,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @Data
-public class User extends BaseEntity implements UserDetails {
+public class User extends BaseEntity {
 
     @Column(name = "username")
     private String username;
@@ -30,13 +29,11 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
 
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinTable(name = "user_classes",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "class_id", referencedColumnName = "id")})
-    private Set<Class> classes;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "class_id", nullable = false)
+    private Class group;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
@@ -73,30 +70,5 @@ public class User extends BaseEntity implements UserDetails {
                 ", password='" + password + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 "} " + super.toString();
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }

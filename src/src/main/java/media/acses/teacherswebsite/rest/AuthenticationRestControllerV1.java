@@ -4,6 +4,7 @@ import media.acses.teacherswebsite.dto.AuthenticationRequestDto;
 import media.acses.teacherswebsite.dto.RegistrationRequestDto;
 import media.acses.teacherswebsite.exception.UserExistsException;
 import media.acses.teacherswebsite.model.User;
+import media.acses.teacherswebsite.security.jwt.JwtTokenProvider;
 import media.acses.teacherswebsite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,14 +28,18 @@ public class AuthenticationRestControllerV1 {
 
     private final AuthenticationManager authenticationManager;
 
+    private final JwtTokenProvider jwtTokenProvider;
+
     private final UserService userService;
 
     @Autowired
     public AuthenticationRestControllerV1(
             AuthenticationManager authenticationManager,
+            JwtTokenProvider jwtTokenProvider,
             UserService userService
     ) {
         this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
         this.userService = userService;
     }
 
@@ -49,10 +54,13 @@ public class AuthenticationRestControllerV1 {
                 throw new UsernameNotFoundException("User with username: " + username + " not found");
             }
 
+            String token = jwtTokenProvider.createToken(username, user.getRoles());
+
             Map<Object, Object> response = new HashMap<>();
             response.put("username", username);
+            response.put("token", token);
 
-            return ResponseEntity.ok(username + " logged in");
+            return ResponseEntity.ok(response);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username or password");
         }

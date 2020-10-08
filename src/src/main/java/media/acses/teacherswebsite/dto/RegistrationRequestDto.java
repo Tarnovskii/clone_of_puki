@@ -5,8 +5,6 @@ import lombok.Data;
 import media.acses.teacherswebsite.model.Class;
 import media.acses.teacherswebsite.model.User;
 
-import java.util.Set;
-
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RegistrationRequestDto {
@@ -16,8 +14,8 @@ public class RegistrationRequestDto {
     private String lastName;
     private String email;
     private String password;
-    private Integer phoneNumber;
-    private Set<Class> classes;
+    private String phoneNumber;
+    private Class group;
 
     public User fromDto() {
         User user = new User();
@@ -27,7 +25,7 @@ public class RegistrationRequestDto {
         user.setEmail(email);
         user.setPassword(password);
         user.setPhoneNumber(phoneNumber);
-        user.setClasses(classes);
+        user.setGroup(group);
 
         return user;
     }
@@ -40,7 +38,7 @@ public class RegistrationRequestDto {
         userDto.setEmail(user.getEmail());
         userDto.setPassword(user.getPassword());
         userDto.setPhoneNumber(user.getPhoneNumber());
-        userDto.setClasses(user.getClasses());
+        userDto.setGroup(user.getGroup());
 
         return userDto;
     }

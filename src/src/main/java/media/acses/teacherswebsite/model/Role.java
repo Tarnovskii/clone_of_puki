@@ -1,7 +1,6 @@
 package media.acses.teacherswebsite.model;
 
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 @Data
-public class Role extends BaseEntity implements GrantedAuthority {
+public class Role extends BaseEntity {
 
     @Column(name = "name")
     private String name;
@@ -30,10 +29,5 @@ public class Role extends BaseEntity implements GrantedAuthority {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), name);
-    }
-
-    @Override
-    public String getAuthority() {
-        return getName();
     }
 }

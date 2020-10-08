@@ -14,7 +14,7 @@
             <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="phone_number" type="BIGINT">
+            <column name="phone_number" type="VARCHAR(64)">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="first_name" type="VARCHAR(100)">
@@ -24,6 +24,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -62,13 +65,13 @@
     </changeSet>
 
     <changeSet id="1.0.4" author="yuriy.paley">
-        <createTable tableName="user_classes">
-            <column name="user_id" type="BIGINT">
-            </column>
-
-            <column name="class_id" type="BIGINT">
-            </column>
-        </createTable>
+        <addForeignKeyConstraint baseTableName="users"
+                                 baseColumnNames="class_id"
+                                 constraintName="fk_users_class"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="classes"
+                                 referencedColumnNames="id" />
     </changeSet>
 
     <changeSet id="1.0.5" author="yuriy.paley">
@@ -92,26 +95,6 @@
     </changeSet>
 
     <changeSet id="1.0.7" author="yuriy.paley">
-        <addForeignKeyConstraint baseTableName="user_classes"
-                                 baseColumnNames="user_id"
-                                 constraintName="fk_user_classes_user"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedTableName="users"
-                                 referencedColumnNames="id" />
-    </changeSet>
-
-    <changeSet id="1.0.8" author="yuriy.paley">
-        <addForeignKeyConstraint baseTableName="user_classes"
-                                 baseColumnNames="class_id"
-                                 constraintName="fk_user_classes_class"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedTableName="classes"
-                                 referencedColumnNames="id" />
-    </changeSet>
-
-    <changeSet id="1.0.9" author="yuriy.paley">
         <insert tableName="roles">
             <column name="name" value="ROLE_USER"/>
         </insert>
