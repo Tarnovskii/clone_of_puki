@@ -1,6 +1,6 @@
 import React from "react";
 import s from "../../stylesheets/global/news.module.css";
-import ArticleTile from "../blanks/ArticleTile";
+import ArticleTile from "../models/ArticleTile";
 import arrow from "../../img/arrow.svg";
 
 export default (props) => {
