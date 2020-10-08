@@ -1,3 +1,7 @@
+.bh3 {
+  font-size: 1.5em;
+}
+
 .main_wrapper {
   background: white;
   max-width: 1040px;
@@ -32,9 +36,6 @@
   flex: 1 1 100%;
   display: flex;
   justify-content: space-between;
-}
-.welcome_block_header b {
-  font-size: 1.5em;
 }
 
 .hallo_world {

@@ -4,17 +4,17 @@ import {Redirect, Route, Switch} from "react-router";
 import MainPage from "./components/routes/MainPage";
 import Header from "./components/global/Header";
 import Footer from "./components/global/Footer";
-
-import UserProfile from "./containers/routes/UserProfile";
-import Login from "./containers/routes/validation/Login";
-import Registraion from "./containers/routes/validation/Registraion";
-import Recovery from "./containers/routes/validation/Recovery";
+import Login from "./components/routes/Login";
+import Registration from "./components/routes/Registration";
+import Recovery from "./components/routes/Recovery";
+import StudentProfile from "./components/routes/StudentProfile";
+import TeacherProfile from "./components/routes/TeacherProfile";
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: 'main'
+            isUserAdmin: false,
         }
     }
 
@@ -24,10 +24,16 @@ export default class extends React.Component {
                 <Header/>
                 <Switch>
                     <Route exact path={'/login'} component={Login}/>
-                    <Route exact path={'/register'} component={Registraion}/>
+                    <Route exact path={'/register'} component={Registration}/>
                     <Route exact path={'/recovery'} component={Recovery}/>
-                    <Route exact path={'/profile'}><UserProfile/><Footer/></Route>
-                    <Route exact path={'/'}><MainPage/><Footer/></Route>
+                    <Route exact path={'/profile'}>
+                        {this.state.isUserAdmin ? <TeacherProfile/> : <StudentProfile/>}
+                        <Footer/>
+                    </Route>
+                    <Route exact path={'/'}>
+                        <MainPage/>
+                        <Footer/>
+                    </Route>
                     <Route path={'/'} component={() => Redirect('/')}/>
                 </Switch>
             </Fragment>

@@ -1,3 +1,7 @@
+.bh3 {
+  font-size: 1.5em;
+}
+
 .wrapper {
   background: white;
   max-width: 1040px;
@@ -33,18 +37,18 @@
 .content {
   padding: 50px 70px 70px;
 }
-.content h3 {
-  font-size: 28px;
+.content .bh3 {
   font-weight: 200;
 }
-.content h3 span {
+.content .bh3 span {
   font-weight: bold;
 }
 
 .calendar {
   margin-top: 50px;
 }
-.calendar b {
+.calendar .bh3 {
+  font-weight: bold;
   margin-left: 50px;
   font-size: 22px;
 }

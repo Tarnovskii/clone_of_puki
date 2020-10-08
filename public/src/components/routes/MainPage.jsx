@@ -2,7 +2,7 @@ import React from "react";
 import s from '../../stylesheets/routes/mainPage.module.css'
 
 import {Link} from "react-router-dom";
-import News from "../../containers/global/News";
+import News from "../../components/global/News";
 import UsefullLinks from "../global/UsefullLinks";
 
 
@@ -14,7 +14,7 @@ export default () => {
             </section>
             <section className={s.welcome_block}>
                 <div className={s.welcome_block_header}>
-                    <b>Добро пожаловать на портал ПУКI!</b>
+                    <h3 className={s.bh3}>Добро пожаловать на портал ПУКI!</h3>
                     <Link to={'/login'}>Вход/регистрация</Link>
                 </div>
                 <div className={s.hallo_world}>

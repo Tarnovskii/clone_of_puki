@@ -1,3 +1,5 @@
+@import '../defines.module';
+
 .wrapper {
   background: white;
   max-width: 1040px;
@@ -34,8 +36,7 @@
 .content {
   padding: 50px 70px 70px;
 
-  h3 {
-    font-size: 28px;
+  .bh3 {
     font-weight: 200;
 
     span {
@@ -47,7 +48,8 @@
 .calendar {
   margin-top: 50px;
 
-  b {
+  .bh3 {
+    font-weight: bold;
     margin-left: 50px;
     font-size: 22px;
   }
