@@ -2,8 +2,8 @@ import React from "react";
 import s from '../../stylesheets/routes/userProfile.module.css'
 import arrow from "../../img/arrow.svg";
 import Perfomance from "../global/Perfomance";
-import News from "../../containers/global/News";
-import FileBrowser from "../../containers/global/FileBrowser";
+import News from "../../components/global/News";
+import FileBrowser from "../../components/global/FileBrowser";
 import UsefullLinks from "../global/UsefullLinks";
 
 export default (props) => {
@@ -13,9 +13,9 @@ export default (props) => {
                 <h2>{props.group}</h2>
             </section>
             <section className={s.content}>
-                <h3>Добро пожаловать, <span>{props.firstName} {props.lastName}</span></h3>
+                <h3 className={s.bh3}>Добро пожаловать, <span>Jennifer Ktototam</span></h3>
                 <div className={s.calendar}>
-                    <b>Календарь событий</b>
+                    <h3 className={s.bh3}>Календарь событий</h3>
                     <div className={s.controller}>
                         <img src={arrow}/> Октябрь 2020 <img src={arrow}/>
                     </div>
@@ -29,7 +29,7 @@ export default (props) => {
                     </table>
                 </div>
                 <div className={s.progress}>
-                    <b>Успеваемость устудента</b>
+                    <h3 className={s.bh3}>Успеваемость устудента</h3>
                     <Perfomance subj={'Програмирование II'}/>
                     <Perfomance subj={'Схемотехника'}/>
                 </div>

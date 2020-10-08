@@ -1,9 +1,10 @@
+@import '../defines.module';
+
 .news_line {
   margin-top: 20px;
   padding: 20px;
-  h3 {
+  .bh3 {
     margin-bottom: 50px;
-    font-size: 1.5em;
     margin-left: 80px;
   }
 }

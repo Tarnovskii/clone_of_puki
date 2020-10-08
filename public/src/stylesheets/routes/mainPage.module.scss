@@ -1,3 +1,5 @@
+@import '../defines.module';
+
 .main_wrapper {
   background: white;
   max-width: 1040px;
@@ -32,7 +34,6 @@
   flex: 1 1 100%;
   display: flex;
   justify-content: space-between;
-  b {font-size: 1.5em;}
 }
 
 .hallo_world {
