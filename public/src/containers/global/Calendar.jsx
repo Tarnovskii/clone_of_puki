@@ -1,7 +1,5 @@
 import React from 'react'
 
-import AdminProfileComp from '../../components/routes/AdminProfileComponent'
-
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -12,7 +10,10 @@ export default class extends React.Component {
 
     render() {
         return (
-           <AdminProfileComp/>
+            <div>
+9^
+            </div>
         );
     }
+
 }
