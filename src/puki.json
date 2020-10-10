@@ -7,7 +7,7 @@
     "-Xss512k",
     "-XX:+UseSerialGC",
     "-jar",
-    "/home/srcs/acses.media/acses_src/target/Puki-v0.01.jar",
+    "/home/srcs/TeachersWebSite/src/target/Puki-v0.01.jar",
     "--spring.profiles.active=prod"
   ],
   "exec_interpreter": "",
