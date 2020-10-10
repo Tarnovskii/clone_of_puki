@@ -1,20 +1,19 @@
 @import '../defines.module';
 
 .wrapper {
-  position: absolute;
   display: block;
-  margin: auto;
+  margin: 60px auto 100px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 512px;
+
   .bh3 {
     margin-bottom: 20px;
   }
 }
 
 .fields_wrapper {
-  box-shadow: 0px 0px 18px -8px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.5);
   border-radius: 3px;
   background: white;
   height: 512px;
@@ -23,6 +22,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+
   p {
     width: 370px;
     font-size: 9px;
@@ -32,9 +32,11 @@
 
 .logo_wrapper {
   text-align: center;
+
   h2 {
     margin-top: 10px;
   }
+
   img {
     display: block;
     filter: invert(1);
@@ -45,6 +47,7 @@
 .fields {
 
   height: auto;
+
   label {
     display: block;
     width: 370px;
@@ -52,6 +55,7 @@
     margin-bottom: 5px;
     font-size: 0.9em;
   }
+
   input, select {
     display: block;
     margin-left: auto;
@@ -76,6 +80,7 @@
   display: flex;
   justify-content: space-between;
   width: 370px;
+
   a {
     text-decoration: none;
     padding-top: 9px;
@@ -89,13 +94,17 @@
     border: none;
     outline: none;
     cursor: pointer;
+
     &:hover {
-      box-shadow: 5px 5px 13px -4px rgba(0,0,0,0.75);
+      box-shadow: 5px 5px 13px -4px rgba(0, 0, 0, 0.75);
     }
   }
 }
 
 .submit_button {
+  display: inline;
+  vertical-align: middle;
+  line-height: 40px;
   margin-top: 20px;
   font-weight: bold;
   font-size: medium;;
@@ -112,6 +121,85 @@
   border-radius: 20px;
 
   &:hover {
-    box-shadow: 5px 5px 13px -4px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 13px -4px rgba(0, 0, 0, 0.75);
   }
 }
+
+.radio_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 370px;
+  height: 35px;
+  margin-bottom: 10px;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+
+  input[type='radio'] {
+    border-radius: 100%;
+    position: relative;
+    margin-left: 10px;
+    margin-bottom: 0;
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    padding: 0;
+  }
+}
+
+.rl {
+  margin-top: 10px;
+}
+
+.custom_wrapper {
+  width: 370px;
+  position: relative;
+  &[in='true'] {
+    animation: increaseHeight 0.4s ease-in forwards;
+  }
+}
+
+.custom {
+  position: absolute;
+  transition: 0.5s all;
+  overflow: hidden;
+}
+
+.custom[visible='false'] {
+  animation: setInvisible 0.3s ease-in forwards;
+}
+
+.custom[visible='true'] {
+  animation: setVisible 0.3s ease-out forwards;
+}
+
+@keyframes increaseHeight {
+  from {
+    height: 0;
+  }
+  to {
+    height: 65px;
+  }
+}
+
+@keyframes setInvisible {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes setVisible {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

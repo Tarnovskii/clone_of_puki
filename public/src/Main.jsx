@@ -9,34 +9,36 @@ import Registration from "./components/routes/Registration";
 import Recovery from "./components/routes/Recovery";
 import StudentProfile from "./components/routes/StudentProfile";
 import TeacherProfile from "./components/routes/TeacherProfile";
+import {connect} from "react-redux";
+import {mapDispatchToProps} from "./utils/storeUtils/dispatchToProps";
 
-export default class extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isUserAdmin: false,
-        }
-    }
-
-    render() {
-        return (
-            <Fragment>
-                <Header/>
-                <Switch>
-                    <Route exact path={'/login'} component={Login}/>
-                    <Route exact path={'/register'} component={Registration}/>
-                    <Route exact path={'/recovery'} component={Recovery}/>
-                    <Route exact path={'/profile'}>
-                        {this.state.isUserAdmin ? <TeacherProfile/> : <StudentProfile/>}
-                        <Footer/>
-                    </Route>
-                    <Route exact path={'/'}>
-                        <MainPage/>
-                        <Footer/>
-                    </Route>
-                    <Route path={'/'} component={() => Redirect('/')}/>
-                </Switch>
-            </Fragment>
-        );
-    }
-}
+export default connect(null, mapDispatchToProps())((props) => {
+    return (
+        <Fragment>
+            <Header/>
+            <Switch>
+                <Route exact path={'/login'} component={() => {
+                    props.updateCurrentPageName("loginPage");
+                    return Login()
+                }}/>
+                <Route exact path={'/register'} component={() => {
+                    props.updateCurrentPageName("regPage");
+                    return Registration()
+                }}/>
+                <Route exact path={'/recovery'} component={() => {
+                    props.updateCurrentPageName("recPage");
+                    return Recovery()
+                }}/>
+                <Route exact path={'/profile'}>
+                    <StudentProfile/>
+                    <Footer/>
+                </Route>
+                <Route exact path={'/'}>
+                    <MainPage/>
+                    <Footer/>
+                </Route>
+                <Route path={'/'} component={() => Redirect('/')}/>
+            </Switch>
+        </Fragment>
+    );
+})

@@ -2,7 +2,7 @@ import React from "react";
 import s from '../../stylesheets/global/filebrowser.module.css'
 
 import arrow from '../../img/arrow.svg'
-import FileTile from "../blanks/FileTile";
+import FileTile from "../models/FileTile";
 
 export default () => {
     return (

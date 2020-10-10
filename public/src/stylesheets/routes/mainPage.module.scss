@@ -7,7 +7,7 @@
   padding-left: 5px;
   padding-right: 5px;
   min-height: inherit;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   margin-left: auto;
   margin-right: auto;
 }
@@ -30,21 +30,51 @@
   flex-wrap: wrap;
 }
 
+
 .welcome_block_header {
+  align-items: center;
   flex: 1 1 100%;
   display: flex;
   justify-content: space-between;
+
+  a {
+    display: inline;
+    vertical-align: middle;
+    line-height: 40px;
+    font-weight: bold;
+    font-size: medium;;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.5s all;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    background: #243E49;
+    border-radius: 20px;
+
+    &:hover {
+      box-shadow: 5px 5px 13px -4px rgba(0, 0, 0, 0.75);
+    }
+  }
 }
 
 .hallo_world {
   padding-right: 100px;
-  p {margin-top: 50px;}
+
+  p {
+    margin-top: 50px;
+  }
+
   flex: 1 2;
 }
 
 .teacher_info {
   margin-top: 40px;
   display: flex;
+
   p {
     margin-top: auto;
     margin-bottom: auto;
@@ -53,6 +83,7 @@
     width: calc(100% - 120px);
     color: rgba(black, 0.6);
     font-size: 1em;
+
     span {
       margin-bottom: 10px;
       color: black;
@@ -60,6 +91,7 @@
       display: block;
     }
   }
+
   img {
     width: 120px !important;
     height: 120px;

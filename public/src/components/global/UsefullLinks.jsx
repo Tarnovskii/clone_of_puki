@@ -1,6 +1,6 @@
 import React from "react";
 import s from "../../stylesheets/global/usefulllinks.module.css";
-import LinkTile from "../blanks/LinkTile";
+import LinkTile from "../models/LinkTile";
 
 
 export default () => {
