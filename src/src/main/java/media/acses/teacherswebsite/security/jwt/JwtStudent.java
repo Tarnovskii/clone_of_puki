@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class JwtUser implements UserDetails {
+public class JwtStudent implements UserDetails {
 
     private final Long id;
     private final String username;
@@ -19,7 +19,7 @@ public class JwtUser implements UserDetails {
     private final Class group;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public JwtUser(
+    public JwtStudent(
             Long id,
             String username,
             String firstName,

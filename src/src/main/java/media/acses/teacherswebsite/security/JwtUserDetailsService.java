@@ -1,9 +1,13 @@
 package media.acses.teacherswebsite.security;
 
-import media.acses.teacherswebsite.model.User;
-import media.acses.teacherswebsite.security.jwt.JwtUser;
-import media.acses.teacherswebsite.security.jwt.JwtUserFactory;
-import media.acses.teacherswebsite.service.UserService;
+import media.acses.teacherswebsite.model.Student;
+import media.acses.teacherswebsite.model.Teacher;
+import media.acses.teacherswebsite.security.jwt.JwtStudent;
+import media.acses.teacherswebsite.security.jwt.JwtStudentFactory;
+import media.acses.teacherswebsite.security.jwt.JwtTeacher;
+import media.acses.teacherswebsite.security.jwt.JwtTeacherFactory;
+import media.acses.teacherswebsite.service.StudentService;
+import media.acses.teacherswebsite.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,22 +17,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-    private final UserService userService;
+    private final TeacherService teacherService;
+
+    private final StudentService studentService;
 
     @Autowired
-    public JwtUserDetailsService(UserService userService) {
-        this.userService = userService;
+    public JwtUserDetailsService(TeacherService teacherService, StudentService studentService) {
+        this.teacherService = teacherService;
+        this.studentService = studentService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByUsername(username);
 
-        if (user == null) {
-            throw new UsernameNotFoundException("User with username: " + username + " not found");
+        Student student = studentService.findByUsername(username);
+        if (student != null) {
+            JwtStudent jwtStudent = JwtStudentFactory.create(student);
+            return jwtStudent;
+        } else  {
+            Teacher teacher = teacherService.findByUsername(username);
+            if (teacher != null) {
+                JwtTeacher jwtTeacher = JwtTeacherFactory.create(teacher);
+                return jwtTeacher;
+            } else {
+                throw new UsernameNotFoundException("User with username: " + username + " not found");
+            }
         }
-
-        JwtUser jwtUser = JwtUserFactory.create(user);
-        return jwtUser;
     }
 }

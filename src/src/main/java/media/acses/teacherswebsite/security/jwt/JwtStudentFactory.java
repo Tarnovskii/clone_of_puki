@@ -1,7 +1,7 @@
 package media.acses.teacherswebsite.security.jwt;
 
 import media.acses.teacherswebsite.model.Role;
-import media.acses.teacherswebsite.model.User;
+import media.acses.teacherswebsite.model.Student;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -10,22 +10,22 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public final class JwtUserFactory {
+public class JwtStudentFactory {
 
-    public JwtUserFactory() {
+    public JwtStudentFactory() {
     }
 
-    public static JwtUser create(User user) {
-        return new JwtUser(
-                user.getId(),
-                user.getUsername(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail(),
-                user.getPassword(),
-                mapToGrantedAuthorities(new HashSet<>(user.getRoles())),
-                user.getPhoneNumber(),
-                user.getGroup()
+    public static JwtStudent create(Student student) {
+        return new JwtStudent(
+                student.getId(),
+                student.getUsername(),
+                student.getFirstName(),
+                student.getLastName(),
+                student.getEmail(),
+                student.getPassword(),
+                mapToGrantedAuthorities(new HashSet<>(student.getStudentRoles())),
+                student.getPhoneNumber(),
+                student.getGroup()
         );
     }
 

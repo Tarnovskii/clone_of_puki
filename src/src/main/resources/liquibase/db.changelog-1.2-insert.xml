@@ -1,0 +1,57 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.2.0" author="yuriy.paley">
+        <insert tableName="roles">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_TEACHER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_STUDENT"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1.2.1" author="yuriy.paley">
+        <insert tableName="universities">
+            <column name="name" value="KPI"/>
+        </insert>
+        <insert tableName="universities">
+            <column name="name" value="KNU"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1.2.3" author="yuriy.paley">
+        <insert tableName="access_keys">
+            <column name="university_id" value="1"/>
+            <column name="key" value="qwerty"/>
+        </insert>
+        <insert tableName="access_keys">
+            <column name="university_id" value="1"/>
+            <column name="key" value="qwerty123"/>
+        </insert>
+        <insert tableName="access_keys">
+            <column name="university_id" value="2"/>
+            <column name="key" value="qwer"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1.2.4" author="yuriy.paley">
+        <insert tableName="classes">
+            <column name="name" value="KV-71"/>
+        </insert>
+        <insert tableName="classes">
+            <column name="name" value="KV-72"/>
+        </insert>
+        <insert tableName="classes">
+            <column name="name" value="KV-73"/>
+        </insert>
+        <insert tableName="classes">
+            <column name="name" value="KV-74"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

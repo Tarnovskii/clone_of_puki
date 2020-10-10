@@ -2,10 +2,12 @@ package media.acses.teacherswebsite.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import media.acses.teacherswebsite.model.Class;
-import media.acses.teacherswebsite.model.User;
+import media.acses.teacherswebsite.model.*;
 
 @Data
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RegistrationRequestDto {
 
@@ -15,31 +17,35 @@ public class RegistrationRequestDto {
     private String email;
     private String password;
     private String phoneNumber;
+    private String groupName;
     private Class group;
+    private AccessKey accessKey;
+    private University university;
 
-    public User fromDto() {
-        User user = new User();
-        user.setUsername(username);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setPhoneNumber(phoneNumber);
-        user.setGroup(group);
+    public Entity fromDto() {
+        Entity entity;
+        if (group == null) {
+            Teacher teacher = new Teacher();
+            teacher.setUsername(username);
+            teacher.setFirstName(firstName);
+            teacher.setLastName(lastName);
+            teacher.setEmail(email);
+            teacher.setPassword(password);
+            teacher.setPhoneNumber(phoneNumber);
+            teacher.setUniversity(university);
+            entity = teacher;
+        } else {
+            Student student = new Student();
+            student.setUsername(username);
+            student.setFirstName(firstName);
+            student.setLastName(lastName);
+            student.setEmail(email);
+            student.setPassword(password);
+            student.setPhoneNumber(phoneNumber);
+            student.setGroup(group);
+            entity = student;
+        }
 
-        return user;
-    }
-
-    public static RegistrationRequestDto toDto(User user) {
-        RegistrationRequestDto userDto = new RegistrationRequestDto();
-        userDto.setUsername(user.getUsername());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setEmail(user.getEmail());
-        userDto.setPassword(user.getPassword());
-        userDto.setPhoneNumber(user.getPhoneNumber());
-        userDto.setGroup(user.getGroup());
-
-        return userDto;
+        return entity;
     }
 }

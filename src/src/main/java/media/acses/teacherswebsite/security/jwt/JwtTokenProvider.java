@@ -1,10 +1,6 @@
 package media.acses.teacherswebsite.security.jwt;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import media.acses.teacherswebsite.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +14,10 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.Base64;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class JwtTokenProvider {
@@ -28,7 +27,6 @@ public class JwtTokenProvider {
 
     @Value("${jwt.token.expired}")
     private long validityInMilliseconds;
-
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -72,7 +70,7 @@ public class JwtTokenProvider {
     public String resolveToken(HttpServletRequest req) {
         String bearerToken = req.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer_")) {
-            return bearerToken.substring(7, bearerToken.length());
+            return bearerToken.substring(7);
         }
         return null;
     }

@@ -1,0 +1,147 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.3.0" author="yuriy.paley">
+        <createTable tableName="tasks">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_time" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="interval" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.3.1" author="yuriy.paley">
+        <createTable tableName="news">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.3.2" author="yuriy.paley">
+        <createTable tableName="teachers_tasks">
+            <column name="teacher_id" type="BIGINT">
+            </column>
+
+            <column name="task_id" type="BIGINT">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.3.3" author="yuriy.paley">
+        <createTable tableName="classes_tasks">
+            <column name="class_id" type="BIGINT">
+            </column>
+
+            <column name="task_id" type="BIGINT">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.3.4" author="yuriy.paley">
+        <createTable tableName="classes_news">
+            <column name="class_id" type="BIGINT">
+            </column>
+
+            <column name="news_id" type="BIGINT">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.3.5" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="teachers_tasks"
+                                 baseColumnNames="teacher_id"
+                                 constraintName="fk_teachers_tasks_teacher_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="teachers"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+    <changeSet id="1.3.6" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="teachers_tasks"
+                                 baseColumnNames="task_id"
+                                 constraintName="fk_teachers_classes_task_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="tasks"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+    <changeSet id="1.3.7" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="classes_tasks"
+                                 baseColumnNames="class_id"
+                                 constraintName="fk_classes_tasks_class_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="classes"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+    <changeSet id="1.3.8" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="classes_tasks"
+                                 baseColumnNames="task_id"
+                                 constraintName="fk_classes_tasks_task_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="tasks"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+    <changeSet id="1.3.9" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="classes_news"
+                                 baseColumnNames="class_id"
+                                 constraintName="fk_classes_news_class_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="classes"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+    <changeSet id="1.3.10" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="classes_news"
+                                 baseColumnNames="news_id"
+                                 constraintName="fk_classes_news_news_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="news"
+                                 referencedColumnNames="id" />
+    </changeSet>
+</databaseChangeLog>

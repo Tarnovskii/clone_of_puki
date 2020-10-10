@@ -3,9 +3,13 @@ package media.acses.teacherswebsite.rest;
 import media.acses.teacherswebsite.dto.AuthenticationRequestDto;
 import media.acses.teacherswebsite.dto.RegistrationRequestDto;
 import media.acses.teacherswebsite.exception.UserExistsException;
-import media.acses.teacherswebsite.model.User;
+import media.acses.teacherswebsite.model.*;
+import media.acses.teacherswebsite.model.Class;
 import media.acses.teacherswebsite.security.jwt.JwtTokenProvider;
-import media.acses.teacherswebsite.service.UserService;
+import media.acses.teacherswebsite.service.AccessKeyService;
+import media.acses.teacherswebsite.service.ClassService;
+import media.acses.teacherswebsite.service.StudentService;
+import media.acses.teacherswebsite.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,26 +25,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/api/v1/auth/")
 public class AuthenticationRestControllerV1 {
 
     private final AuthenticationManager authenticationManager;
-
     private final JwtTokenProvider jwtTokenProvider;
-
-    private final UserService userService;
+    private final TeacherService teacherService;
+    private final StudentService studentService;
+    private final AccessKeyService accessKeyService;
+    private final ClassService classService;
 
     @Autowired
     public AuthenticationRestControllerV1(
             AuthenticationManager authenticationManager,
             JwtTokenProvider jwtTokenProvider,
-            UserService userService
-    ) {
+            TeacherService teacherService,
+            StudentService studentService,
+            AccessKeyService accessKeyService,
+            ClassService classService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
-        this.userService = userService;
+        this.teacherService = teacherService;
+        this.studentService = studentService;
+        this.accessKeyService = accessKeyService;
+        this.classService = classService;
     }
 
     @PostMapping("login")
@@ -48,13 +59,21 @@ public class AuthenticationRestControllerV1 {
         try {
             String username = authenticationRequestDto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, authenticationRequestDto.getPassword()));
-            User user = userService.findByUsername(username);
+            Teacher teacher = teacherService.findByUsername(username);
+            Set<Role> roles;
 
-            if (user == null) {
-                throw new UsernameNotFoundException("User with username: " + username + " not found");
+            if (teacher == null) {
+                Student student = studentService.findByUsername(username);
+                if (student == null) {
+                    throw new UsernameNotFoundException("User with username: " + username + " not found");
+                } else {
+                    roles = student.getStudentRoles();
+                }
+            } else {
+                roles = teacher.getTeacherRoles();
             }
 
-            String token = jwtTokenProvider.createToken(username, user.getRoles());
+            String token = jwtTokenProvider.createToken(username, roles);
 
             Map<Object, Object> response = new HashMap<>();
             response.put("username", username);
@@ -68,11 +87,42 @@ public class AuthenticationRestControllerV1 {
 
     @PostMapping("register")
     public ResponseEntity register(@RequestBody RegistrationRequestDto requestDto) throws UserExistsException {
-        User user = requestDto.fromDto();
-        if (userService.register(user)) {
-            return new ResponseEntity(HttpStatus.OK);
+        if (studentService.findByUsername(requestDto.getUsername()) != null ||
+            teacherService.findByUsername(requestDto.getUsername()) != null) {
+            throw new UserExistsException("user with username: " + requestDto.getUsername() + " already exists");
+        }
+
+        if (requestDto.getAccessKey() != null) {
+             University university = getUniversityByAccessKey(requestDto.getAccessKey().getKey());
+            requestDto.setUniversity(university);
+        }
+
+        if (requestDto.getGroupName() != null) {
+            Class group = classService.findByName(requestDto.getGroupName());
+            requestDto.setGroup(group);
+        }
+
+        Entity entity = requestDto.fromDto();
+
+        if (entity instanceof Teacher) {
+            if (teacherService.register((Teacher) entity)) {
+                return new ResponseEntity(HttpStatus.OK);
+            }
+        } else {
+            if (studentService.register((Student) entity)) {
+                return new ResponseEntity(HttpStatus.OK);
+            }
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
+    }
+
+    private University getUniversityByAccessKey(String key) {
+        if (key == null) {
+            return null;
+        }
+        AccessKey accessKey = accessKeyService.findByKey(key);
+        University result = accessKey.getUniversity();
+        return result;
     }
 }

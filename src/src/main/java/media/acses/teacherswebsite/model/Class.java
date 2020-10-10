@@ -2,6 +2,7 @@ package media.acses.teacherswebsite.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -15,7 +16,7 @@ public class Class extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
-    private Set<User> students;
+    private Set<Student> students;
 
     @Override
     public boolean equals(Object o) {
