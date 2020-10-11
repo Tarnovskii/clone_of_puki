@@ -12,7 +12,7 @@ export default (props) => {
     return (
         <section className={s.wrapper}>
             <h3 className={s.bh3}>Войти в систему</h3>
-            <div className={s.fields_wrapper}>
+            <form className={s.fields_wrapper}>
                 <div className={s.logo_wrapper}>
                     <img src={logo} alt={'logo'}/>
                     <h2>ПУКІ</h2>
@@ -28,7 +28,7 @@ export default (props) => {
                     <Link to={'/recovery'}>Забыли пароль</Link>
                 </div>
                 <input type={'submit'} className={s.submit_button} value={'Войти'}/>
-            </div>
+            </form>
         </section>
     )
 }

@@ -16,6 +16,11 @@
   margin-right: 10px;
   height: inherit;
   width: 55px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.logo_wrapper img {
+  height: 100%;
 }
 
 .header_title h1, .header_title h2 {
