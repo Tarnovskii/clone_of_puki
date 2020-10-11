@@ -19,8 +19,7 @@ export default connect(null, mapDispatchToProps())((props) => {
             <Switch>
                 <Route exact path={'/login'} component={() => {
                     props.updateCurrentPageName("loginPage");
-                    return Login()
-                }}/>
+                    return Login();}}/>
                 <Route exact path={'/register'} component={() => {
                     props.updateCurrentPageName("regPage");
                     return Registration()
