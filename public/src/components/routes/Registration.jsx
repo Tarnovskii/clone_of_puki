@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-
 import s from '../../stylesheets/routes/valid.module.css'
 import {Link} from "react-router-dom";
+import {Transition} from "react-transition-group";
 
 export default (props) => {
     const [fisrtName, setFirstName] = useState("")
@@ -11,6 +11,7 @@ export default (props) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [group, setGroup] = useState("")
+    const [userType, setUserType] = useState("")
 
     return (
         <section className={s.wrapper}>
@@ -41,7 +42,7 @@ export default (props) => {
                        type="password" name="f_password" required/>
 
                 <label htmlFor={'s_password'}>Повторите пароль:</label>
-                <input type="password" onChange={(e) =>{
+                <input type="password" onChange={(e) => {
                     if (e.target.value === password) {
                         e.target.style.outlineColor = 'black'
                         e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'
@@ -51,16 +52,38 @@ export default (props) => {
                     }
                 }} name="s_password" required/>
 
-                <label htmlFor={'group'}>Группа:</label>
-                <select value={group} onChange={(e) => setGroup(e.target.value)}
-                        name="group">
-                    <option disabled>Группа</option>
-                    <option value="KV-71">KV-71</option>
-                    <option value="KV-72">KV-72</option>
-                    <option value="KV-73">KV-73</option>
-                    <option value="KV-74">KV-74</option>
-                </select>
+                <label className={s.rl}>Аккаунт для:</label>
+                <div className={s.radio_wrapper}>
+                    <span>Студента <input onChange={() => setUserType('student')} name={'type'} type={'radio'}/></span>
+                    <span>Преподавателя <input onChange={() => setUserType('teacher')} name={'type'}
+                                               type={'radio'}/></span>
+                </div>
 
+                <div in={(userType !== "").toString()} className={s.custom_wrapper}>
+                    <Transition in={userType === 'student'} timeout={{appear: 0, enter: 500, exit: 500}} appear
+                                unmountOnExit>
+                        <div visible={(userType === 'student').toString()} className={s.custom}>
+                            <label htmlFor={'group'}>Группа:</label>
+                            <select
+                                value={group} onChange={(e) => setGroup(e.target.value)}
+                                name="group">
+                                <option disabled>Группа</option>
+                                <option value="KV-71">KV-71</option>
+                                <option value="KV-72">KV-72</option>
+                                <option value="KV-73">KV-73</option>
+                                <option value="KV-74">KV-74</option>
+                            </select>
+                        </div>
+                    </Transition>
+
+                    <Transition in={userType === 'teacher'} timeout={{appear: 0, enter: 500, exit: 500}} appear
+                                unmountOnExit>
+                        <div visible={(userType === 'teacher').toString()} className={s.custom}>
+                            <label htmlFor={'group'}>Ключ:</label>
+                            <input type={'text'}/>
+                        </div>
+                    </Transition>
+                </div>
                 <p>Нажимая кнопку “Регистрация” вы соглашаетесь с условиями пользования порталом и ее правилами
                     обработки данных</p>
                 <Link to={'/login'} className={s.submit_button}>Зарегистрироваться</Link>

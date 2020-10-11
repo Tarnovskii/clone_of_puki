@@ -5,10 +5,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  background: #FAFBFC;
 }
 
 #root {
-  background: #FAFBFC;
   min-height: inherit;
   min-width: inherit;
   height: inherit;

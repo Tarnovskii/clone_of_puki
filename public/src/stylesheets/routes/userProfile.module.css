@@ -52,22 +52,11 @@
   margin-left: 50px;
   font-size: 22px;
 }
-.calendar table {
+.calendar iframe {
+  border: none;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.28);
   width: 100%;
-}
-.calendar table tr {
-  height: 115px;
-}
-.calendar table td {
-  font-size: 32px;
-  font-weight: lighter;
-  padding: 5px;
-  vertical-align: top;
-  width: 133px;
-}
-.calendar table, .calendar td, .calendar tr {
-  border: 1px solid #CBCBCB;
+  height: 600px;
 }
 
 .controller {

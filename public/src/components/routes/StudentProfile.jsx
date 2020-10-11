@@ -19,14 +19,7 @@ export default (props) => {
                     <div className={s.controller}>
                         <img src={arrow}/> Октябрь 2020 <img src={arrow}/>
                     </div>
-                    <table cellPadding={0} cellSpacing={0}>
-                        <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>1</td><td>3</td><td>3</td></tr>
-                        <tr><td>4</td><td>5</td><td>6</td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    </table>
+                    Тут будет календарь
                 </div>
                 <div className={s.progress}>
                     <h3 className={s.bh3}>Успеваемость устудента</h3>
