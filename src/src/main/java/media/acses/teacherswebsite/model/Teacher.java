@@ -33,6 +33,12 @@ public class Teacher extends BaseEntity implements Entity {
     private University university;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "teachers_classes",
+            joinColumns = {@JoinColumn(name = "teacher_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "class_id", referencedColumnName = "id")})
+    private Set<Class> teacherClasses;
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "teacher_roles",
             joinColumns = {@JoinColumn(name = "teacher_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})

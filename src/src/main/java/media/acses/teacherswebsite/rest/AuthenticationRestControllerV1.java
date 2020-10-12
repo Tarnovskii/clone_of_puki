@@ -61,6 +61,7 @@ public class AuthenticationRestControllerV1 {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, authenticationRequestDto.getPassword()));
             Teacher teacher = teacherService.findByUsername(username);
             Set<Role> roles;
+            Map<Object, Object> response = new HashMap<>();
 
             if (teacher == null) {
                 Student student = studentService.findByUsername(username);
@@ -68,20 +69,20 @@ public class AuthenticationRestControllerV1 {
                     throw new UsernameNotFoundException("User with username: " + username + " not found");
                 } else {
                     roles = student.getStudentRoles();
+                    response.put("first_name", student.getFirstName());
+                    response.put("last_name", student.getLastName());
                 }
             } else {
                 roles = teacher.getTeacherRoles();
+                response.put("groups", teacher.getTeacherClasses());
             }
 
             String token = jwtTokenProvider.createToken(username, roles);
-
-            Map<Object, Object> response = new HashMap<>();
-            response.put("username", username);
             response.put("token", token);
 
             return ResponseEntity.ok(response);
         } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid username or password");
+            throw new BadCredentialsException("invalid username or password");
         }
     }
 

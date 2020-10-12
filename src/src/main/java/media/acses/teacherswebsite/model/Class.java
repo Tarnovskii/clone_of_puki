@@ -1,5 +1,6 @@
 package media.acses.teacherswebsite.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,8 +16,13 @@ public class Class extends BaseEntity {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     private Set<Student> students;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "teacherClasses", fetch = FetchType.LAZY)
+    private Set<Teacher> teachers;
 
     @Override
     public boolean equals(Object o) {

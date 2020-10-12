@@ -38,12 +38,23 @@ id=3; name=ROLE_STUDENT
 }</pre></ul>
 <ul>Success Response:<pre>Code: 200
 Content: 
+If Student:
 {
-    username=[string]
+    first_name=[string]
+    last_name=[string]
+    token=[string]
+}
+If Teacher:
+{
+    groups=
+        [{
+            id=[integer]
+            name=[string]
+        }...]
     token=[string]
 }</pre></ul>
 <ul>Error Response:<pre>Code: 403
-Content: none</pre></ul>
+Content: "invalid username or password"</pre></ul>
 
 <h4>Registration</h4>
 <ul>URL<pre>/api/v1/auth/register</pre></ul>
