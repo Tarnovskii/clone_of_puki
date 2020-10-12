@@ -40,6 +40,9 @@ id=3; name=ROLE_STUDENT
 Content: 
 If Student:
 {
+    username=[string]
+    email=[string]
+    phone_number=[string]
     first_name=[string]
     last_name=[string]
     group=
@@ -51,6 +54,9 @@ If Student:
 }
 If Teacher:
 {
+    username=[string]
+    email=[string]
+    phone_number=[string]
     groups=
         [{
             id=[integer]

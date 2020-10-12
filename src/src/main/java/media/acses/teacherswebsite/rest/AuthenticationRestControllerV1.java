@@ -3,8 +3,8 @@ package media.acses.teacherswebsite.rest;
 import media.acses.teacherswebsite.dto.AuthenticationRequestDto;
 import media.acses.teacherswebsite.dto.RegistrationRequestDto;
 import media.acses.teacherswebsite.exception.UserExistsException;
-import media.acses.teacherswebsite.model.*;
 import media.acses.teacherswebsite.model.Class;
+import media.acses.teacherswebsite.model.*;
 import media.acses.teacherswebsite.security.jwt.JwtTokenProvider;
 import media.acses.teacherswebsite.service.AccessKeyService;
 import media.acses.teacherswebsite.service.ClassService;
@@ -69,12 +69,18 @@ public class AuthenticationRestControllerV1 {
                     throw new UsernameNotFoundException("User with username: " + username + " not found");
                 } else {
                     roles = student.getStudentRoles();
+                    response.put("username", student.getUsername());
+                    response.put("email", student.getEmail());
+                    response.put("phone_number", student.getPhoneNumber());
                     response.put("first_name", student.getFirstName());
                     response.put("last_name", student.getLastName());
                     response.put("group", student.getGroup());
                 }
             } else {
                 roles = teacher.getTeacherRoles();
+                response.put("username", teacher.getUsername());
+                response.put("email", teacher.getEmail());
+                response.put("phone_number", teacher.getPhoneNumber());
                 response.put("groups", teacher.getTeacherClasses());
             }
 
