@@ -42,6 +42,11 @@ If Student:
 {
     first_name=[string]
     last_name=[string]
+    group=
+        {
+            id=[integer]
+            name=[string]
+        }
     token=[string]
 }
 If Teacher:

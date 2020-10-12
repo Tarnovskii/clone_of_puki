@@ -71,6 +71,7 @@ public class AuthenticationRestControllerV1 {
                     roles = student.getStudentRoles();
                     response.put("first_name", student.getFirstName());
                     response.put("last_name", student.getLastName());
+                    response.put("group", student.getGroup());
                 }
             } else {
                 roles = teacher.getTeacherRoles();
