@@ -2,8 +2,10 @@ import React from "react";
 import s from '../../stylesheets/routes/valid.module.css'
 import {Link} from "react-router-dom";
 import {Transition} from "react-transition-group";
+import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
+import {connect} from "react-redux";
 
-export default class extends React.Component {
+export default connect(null, mapDispatchToProps())(class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,6 +19,8 @@ export default class extends React.Component {
             key: "",
             group: "",
         }
+        props.routingActions.updateFooterStatus('hidden')
+        props.routingActions.updateCurrentPageName("regPage");
     }
 
     updateFirstName = value => this.setState({firstName: value})
@@ -112,9 +116,9 @@ export default class extends React.Component {
                     </div>
                     <p>Нажимая кнопку “Регистрация” вы соглашаетесь с условиями пользования порталом и ее правилами
                         обработки данных</p>
-                    <Link to={'/login'} className={s.submit_button}>Зарегистрироваться</Link>
+                    <Link to={'/login'} className={s.active_button}>Зарегистрироваться</Link>
                 </div>
             </section>
         )
     }
-}
+})

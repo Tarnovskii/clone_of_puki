@@ -2,36 +2,43 @@ import React, {Fragment} from "react";
 import s from '../../stylesheets/global/header.module.css'
 
 import logo from '../../img/logo.svg'
+import gear from '../../img/gear.svg'
 import {connect} from "react-redux";
 import {mapStateToProps} from "../../utils/storeUtils/stateToProps";
 import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
 import {Link} from "react-router-dom";
 
 export default connect(mapStateToProps(), mapDispatchToProps())((props) => {
-    console.log(props);
-
-    const mainPageLinks = (isAuth = false) => {
-        return isAuth ? (
-            <Fragment>
-                <Link className={s.lb} to={'/profile'}>Войти в систему</Link>
-            </Fragment>
-        ) : <Link className={s.lb} to={'/profile'}>Войти в систему</Link>
+    const mainPageLinks = () => {
+        if (props.userState.userRole === 'STUDENT' || props.userState.userRole === 'TEACHER') {
+            return (
+                <Fragment>
+                    <Link className={s.lb} to={'/profile'}>Профиль</Link>
+                    <Link className={s.lb} to={'/signout'}>Выйти</Link>
+                    <Link className={s.lb_d} to={'/setting'}><img src={gear} alt={'gear'}/></Link>
+                </Fragment>
+            )
+        }
     }
-    const loginPageLinks =  <Link className={s.lb} to={'/'}>На главную</Link>
+    const profileLinks = <Link to={'/'}> asdasd </Link>
+    const loginPageLinks = <Link className={s.lb} to={'/'}>На главную</Link>
     const regRecPage = <Link className={s.lb} to={'/login'}>Назад</Link>
 
     return (
         <header className={s.header_wrapper}>
-            <Link to={'/'} className={s.logo_wrapper}><img src={logo} alt={'logo'}/></Link>
             <div className={s.header_title}>
+                <Link to={'/'} className={s.logo_wrapper}><img src={logo} alt={'logo'}/></Link>
                 <h1>ПУКІ</h1>
                 <h2>Посібник к комп'ютерній інженерії</h2>
             </div>
-            {props.pageName === 'mainPage'
-                ? mainPageLinks() : props.pageName === 'loginPage'
-                ? loginPageLinks : (props.pageName === 'regPage') || (props.pageName === 'recPage')
-                ? regRecPage : <div>zhhzhzhz</div>
-            }
+            <div className={s.hb}>
+                {props.pageName === 'mainPage'
+                    ? mainPageLinks() : props.pageName === 'loginPage'
+                        ? loginPageLinks : (props.pageName === 'regPage') || (props.pageName === 'recPage')
+                            ? regRecPage : props.pageName === 'profilePage'
+                                ? profileLinks : null
+                }
+            </div>
         </header>
     )
 })

@@ -4,13 +4,14 @@ import s from '../../stylesheets/routes/mainPage.module.css'
 import {Link} from "react-router-dom";
 import News from "../../components/global/News";
 import UsefullLinks from "../global/UsefullLinks";
-import {connect} from "react-redux";
-import {mapStateToProps} from "../../utils/storeUtils/stateToProps";
 import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
+import {connect} from "react-redux";
 
 
-export default connect(mapStateToProps(), mapDispatchToProps())((props) => {
-    props.updateCurrentPageName("mainPage");
+export default connect(null, mapDispatchToProps())((props) => {
+    props.routingActions.updateFooterStatus('visible')
+    props.routingActions.updateCurrentPageName("mainPage");
+
     return (
         <main className={s.main_wrapper}>
             <section className={s.banner}>

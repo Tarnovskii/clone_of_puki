@@ -5,8 +5,12 @@ import Perfomance from "../global/Perfomance";
 import News from "../../components/global/News";
 import FileBrowser from "../../components/global/FileBrowser";
 import UsefullLinks from "../global/UsefullLinks";
+import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
+import {connect} from "react-redux";
 
-export default (props) => {
+export default connect(null, mapDispatchToProps())((props) => {
+    props.routingActions.updateFooterStatus('visible')
+    props.routingActions.updateCurrentPageName("profilePage");
     return (
         <main className={s.wrapper}>
             <section className={s.banner}>
@@ -32,4 +36,4 @@ export default (props) => {
             <UsefullLinks/>
         </main>
     )
-}
+})

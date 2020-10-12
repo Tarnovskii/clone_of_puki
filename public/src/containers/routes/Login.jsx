@@ -4,14 +4,18 @@ import s from '../../stylesheets/routes/valid.module.css'
 
 import logo from '../../img/logo.svg'
 import {Link} from "react-router-dom";
+import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
+import {connect} from "react-redux";
 
-export default class extends React.Component {
+export default connect(null, mapDispatchToProps())(class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: "",
             password: "",
         }
+        props.routingActions.updateFooterStatus('hidden')
+        props.routingActions.updateCurrentPageName("loginPage");
     }
 
     updateUsername = (value) => this.setState({username: value})
@@ -35,12 +39,12 @@ export default class extends React.Component {
                                type="password" name="password" placeholder="Пароль" required/>
                     </div>
                     <div className={s.login_buttons}>
-                        <Link to={'/register'}>Регистрация</Link>
-                        <Link to={'/recovery'}>Забыли пароль</Link>
+                        <Link className={s.passive_button} to={'/register'}>Регистрация</Link>
+                        <Link className={s.passive_button} to={'/recovery'}>Забыли пароль</Link>
                     </div>
-                    <input type={'submit'} className={s.submit_button} value={'Войти'}/>
+                    <input type={'submit'} className={s.active_button} value={'Войти'}/>
                 </form>
             </section>
         )
     }
-}
+})

@@ -2,6 +2,40 @@
   font-size: 1.5em;
 }
 
+.active_button, .passive_button {
+  display: inline;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: medium;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s all;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  color: white;
+}
+.active_button:hover, .passive_button:hover {
+  box-shadow: 5px 5px 13px -4px rgba(0, 0, 0, 0.75);
+}
+
+.active_button {
+  line-height: 40px;
+  height: 40px;
+  background: #243E49;
+  min-width: 200px;
+}
+
+.passive_button {
+  line-height: 35px;
+  height: 35px;
+  background: #AEB7BB;
+  min-width: 140px;
+}
+
 .main_wrapper {
   background: white;
   max-width: 1040px;

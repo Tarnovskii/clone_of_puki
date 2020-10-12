@@ -80,49 +80,6 @@
   display: flex;
   justify-content: space-between;
   width: 370px;
-
-  a {
-    text-decoration: none;
-    padding-top: 9px;
-    transition: 0.5s all;
-    color: white;
-    text-align: center;
-    width: 160px;
-    height: 35px;
-    background: #AEB7BB;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-
-    &:hover {
-      box-shadow: 5px 5px 13px -4px rgba(0, 0, 0, 0.75);
-    }
-  }
-}
-
-.submit_button {
-  display: inline;
-  vertical-align: middle;
-  line-height: 40px;
-  margin-top: 20px;
-  font-weight: bold;
-  font-size: medium;;
-  text-align: center;
-  text-decoration: none;
-  transition: 0.5s all;
-  color: white;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  width: 200px;
-  height: 40px;
-  background: #243E49;
-  border-radius: 20px;
-
-  &:hover {
-    box-shadow: 5px 5px 13px -4px rgba(0, 0, 0, 0.75);
-  }
 }
 
 .radio_wrapper {
