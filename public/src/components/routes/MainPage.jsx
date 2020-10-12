@@ -9,6 +9,8 @@ import {connect} from "react-redux";
 
 
 export default connect(null, mapDispatchToProps())((props) => {
+    console.log(props)
+
     props.routingActions.updateFooterStatus('visible')
     props.routingActions.updateCurrentPageName("mainPage");
 

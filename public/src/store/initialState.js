@@ -1,5 +1,8 @@
 export const initialState = {
-    pageName: "mainPage",
+    routingState: {
+      pageName: 'mainPage',
+      footerStatus: 'visible',
+    },
     userState: {
         userToken: "",
         userRole: "TEACHER",

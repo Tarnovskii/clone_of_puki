@@ -18,12 +18,12 @@ export default connect(mapStateToProps(), mapDispatchToProps())((props) => {
         <Fragment>
             <Header/>
             <Switch>
-                <Route exact path={'/login'} component={Login}/>
-                <Route exact path={'/register'} component={Registration}/>
-                <Route exact path={'/recovery'} component={Recovery}/>
-                <Route exact path={'/profile'} component={ProfileRouter}/>
-                <Route exact path={'/'} component={MainPage}/>
-                <Route path={'/'} component={() => Redirect('/')}/>
+                <Route exact path={'/login'}><Login/></Route>
+                <Route exact path={'/register'}><Registration/></Route>
+                <Route exact path={'/recovery'}><Recovery/></Route>
+                <Route exact path={'/profile'}><ProfileRouter/></Route>
+                <Route exact path={'/'}><MainPage/></Route>
+                <Route path={'/'}><Redirect to={'/'}/></Route>
             </Switch>
             <Footer/>
         </Fragment>

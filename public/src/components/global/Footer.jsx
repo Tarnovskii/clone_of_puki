@@ -7,8 +7,7 @@ import {connect} from "react-redux";
 import {mapStateToProps} from "../../utils/storeUtils/stateToProps";
 
 export default connect(mapStateToProps())((props) => {
-    console.log(props)
-    if (props.footerStatus === 'visible') {
+    if (props.routingState.footerStatus === 'visible') {
         return (
             <footer className={s.footer_wrapper}>
                 <section className={s.footer_content}>

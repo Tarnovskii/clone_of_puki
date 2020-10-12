@@ -32,10 +32,10 @@ export default connect(mapStateToProps(), mapDispatchToProps())((props) => {
                 <h2>Посібник к комп'ютерній інженерії</h2>
             </div>
             <div className={s.hb}>
-                {props.pageName === 'mainPage'
-                    ? mainPageLinks() : props.pageName === 'loginPage'
-                        ? loginPageLinks : (props.pageName === 'regPage') || (props.pageName === 'recPage')
-                            ? regRecPage : props.pageName === 'profilePage'
+                {props.routingState.pageName === 'mainPage'
+                    ? mainPageLinks() : props.routingState.pageName === 'loginPage'
+                        ? loginPageLinks : (props.routingState.pageName === 'regPage') || (props.routingState.pageName === 'recPage')
+                            ? regRecPage : props.routingState.pageName === 'profilePage'
                                 ? profileLinks : null
                 }
             </div>
