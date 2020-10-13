@@ -12,10 +12,12 @@ import ProfileRouter from "./components/routes/ProfileRouter";
 import {connect} from "react-redux";
 import {mapDispatchToProps} from "./utils/storeUtils/dispatchToProps";
 import {mapStateToProps} from "./utils/storeUtils/stateToProps";
+import Modal from "./containers/models/Modal";
 
 export default connect(mapStateToProps(), mapDispatchToProps())((props) => {
     return (
         <Fragment>
+            <Modal/>
             <Header/>
             <Switch>
                 <Route exact path={'/login'}><Login/></Route>

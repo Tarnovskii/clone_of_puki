@@ -3,8 +3,6 @@ import * as userStateActions from '../../store/actions/userActions'
 import * as modalActions from "../../store/actions/modalActions";
 import {bindActionCreators} from "redux";
 
-console.log(modalActions)
-
 export const mapDispatchToProps = component => dispatch => {
         return {
             routingActions: {...bindActionCreators(routingActions, dispatch)},

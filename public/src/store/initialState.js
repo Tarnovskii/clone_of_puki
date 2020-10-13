@@ -6,6 +6,10 @@ export const initialState = {
     userState: {
         userToken: "",
         userRole: "TEACHER",
+    },
+    modalState: {
+        isOpen: false,
+        modalContent: null,
     }
 }
 

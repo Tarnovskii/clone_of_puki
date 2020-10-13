@@ -8,13 +8,6 @@ body {
   background: #FAFBFC;
 }
 
-#root {
-  min-height: inherit;
-  min-width: inherit;
-  height: inherit;
-  width: inherit;
-}
-
 * {
   line-height: 1em;
   box-sizing: border-box;

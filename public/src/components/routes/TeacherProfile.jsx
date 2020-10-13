@@ -6,6 +6,7 @@ import FileBrowser from "../global/FileBrowser";
 import UsefullLinks from "../global/UsefullLinks";
 import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
 import {connect} from "react-redux";
+import TeacherTaskModal from "../../containers/models/TeacherTaskModal";
 
 export default connect(null, mapDispatchToProps())((props) => {
     return (
@@ -17,7 +18,12 @@ export default connect(null, mapDispatchToProps())((props) => {
                         <div className={s.controller}>
                             <img src={arrow}/> Октябрь 2020 <img src={arrow}/>
                         </div>
-                        <button className={s.active_button}> Добавить событие </button>
+                        <button className={s.active_button} onClick={() => {
+                            props.modalActions.updateModalContent(TeacherTaskModal)
+                            props.modalActions.updateModalState(true)
+                        }}>
+                            Добавить событие
+                        </button>
                     </div>
                     Тут будет календарь
                 </div>
