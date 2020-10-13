@@ -46,28 +46,6 @@
   margin-right: auto;
 }
 
-.banner {
-  height: 200px;
-  background: #243E49;
-  display: flex;
-  align-items: center;
-  color: white;
-  font-size: 48px;
-  background: url("../../img/bannerImages/banner1.jpg") no-repeat center center;
-  background-size: cover;
-  box-shadow: 0px 3px 5px -4px rgba(0, 0, 0, 0.75);
-}
-.banner h2 {
-  background: rgba(0, 0, 0, 0.5);
-  display: block;
-  text-align: left;
-  position: absolute;
-  font-weight: bold;
-  padding: 10px 30px 10px 80px;
-  color: #FFFFFF;
-  text-shadow: 0px 4px 4px #000000;
-}
-
 .content {
   padding: 50px 70px 70px;
 }
@@ -78,9 +56,6 @@
   font-weight: bold;
 }
 
-.calendar {
-  margin-top: 50px;
-}
 .calendar .bh3 {
   font-weight: bold;
   margin-left: 50px;
@@ -91,6 +66,12 @@
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.28);
   width: 100%;
   height: 600px;
+}
+
+.calendar_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .controller {
@@ -112,13 +93,22 @@
   transform: rotate(180deg);
 }
 
-.progress {
-  margin-top: 50px;
-  margin-bottom: 100px;
+.bd_actions {
+  display: flex;
+  align-items: center;
 }
-.progress b {
-  margin-left: 50px;
+.bd_actions button {
+  margin-right: 20px;
+}
+
+.global_db {
+  margin-top: 50px;
+  padding-left: 50px;
+}
+.global_db .bh3 {
+  margin-bottom: 20px;
+  font-weight: bold;
   font-size: 22px;
 }
 
-/*# sourceMappingURL=userProfile.module.css.map */
+/*# sourceMappingURL=teacherProfile.module.css.map */

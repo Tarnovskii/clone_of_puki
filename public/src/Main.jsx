@@ -4,41 +4,30 @@ import {Redirect, Route, Switch} from "react-router";
 import MainPage from "./components/routes/MainPage";
 import Header from "./components/global/Header";
 import Footer from "./components/global/Footer";
-import Login from "./components/routes/Login";
-import Registration from "./components/routes/Registration";
-import Recovery from "./components/routes/Recovery";
-import StudentProfile from "./components/routes/StudentProfile";
-import TeacherProfile from "./components/routes/TeacherProfile";
+import Login from "./containers/routes/Login";
+import Registration from "./containers/routes/Registration";
+import Recovery from "./containers/routes/Recovery";
+import ProfileRouter from "./components/routes/ProfileRouter";
+
 import {connect} from "react-redux";
 import {mapDispatchToProps} from "./utils/storeUtils/dispatchToProps";
+import {mapStateToProps} from "./utils/storeUtils/stateToProps";
+import Modal from "./containers/models/Modal";
 
-export default connect(null, mapDispatchToProps())((props) => {
+export default connect(mapStateToProps(), mapDispatchToProps())((props) => {
     return (
         <Fragment>
+            <Modal/>
             <Header/>
             <Switch>
-                <Route exact path={'/login'} component={() => {
-                    props.updateCurrentPageName("loginPage");
-                    return Login()
-                }}/>
-                <Route exact path={'/register'} component={() => {
-                    props.updateCurrentPageName("regPage");
-                    return Registration()
-                }}/>
-                <Route exact path={'/recovery'} component={() => {
-                    props.updateCurrentPageName("recPage");
-                    return Recovery()
-                }}/>
-                <Route exact path={'/profile'}>
-                    <StudentProfile/>
-                    <Footer/>
-                </Route>
-                <Route exact path={'/'}>
-                    <MainPage/>
-                    <Footer/>
-                </Route>
-                <Route path={'/'} component={() => Redirect('/')}/>
+                <Route exact path={'/login'}><Login/></Route>
+                <Route exact path={'/register'}><Registration/></Route>
+                <Route exact path={'/recovery'}><Recovery/></Route>
+                <Route exact path={'/profile'}><ProfileRouter/></Route>
+                <Route exact path={'/'}><MainPage/></Route>
+                <Route path={'/'}><Redirect to={'/'}/></Route>
             </Switch>
+            <Footer/>
         </Fragment>
     );
 })

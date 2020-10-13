@@ -3,6 +3,12 @@
 .news_line {
   margin-top: 20px;
   padding: 20px;
+  .active_button {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 50px;
+  }
   .bh3 {
     margin-bottom: 50px;
     margin-left: 80px;

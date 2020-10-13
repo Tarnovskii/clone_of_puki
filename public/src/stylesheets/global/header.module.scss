@@ -8,17 +8,25 @@
   background: #243E49;
   color: white;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   z-index: 99999;
 }
 
 .logo_wrapper {
+  display: inline-block;
   margin-right: 10px;
   height: inherit;
   width: 55px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  img {
+    height: 100%;
+  }
 }
 
 .header_title {
+
   h1, h2 {
     display: inline-block;
   }
@@ -33,11 +41,14 @@
   }
 }
 
+.hb {
+  display: flex;
+  align-items: center;
+}
+
 .lb {
-  padding-bottom: 3px;
+  margin-left: 30px;
   position: relative;
-  margin-right: 0;
-  margin-left: auto;
   text-decoration: none;
   font-size: 1.1em;
   color: white;
@@ -48,7 +59,7 @@
     content: '';
     height: 2px;
     background: white;
-    transition: 0.5s all;
+    transition: 0.2s all;
     bottom: -7px;
     left: 0;
     overflow: hidden;
@@ -56,5 +67,13 @@
 
   &:hover:after {
     width: 100%;
+  }
+}
+
+.lb_d {
+  padding-top: 5px;
+  margin-left: 30px;
+  &:after {
+    display: none;
   }
 }

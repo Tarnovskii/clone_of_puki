@@ -14,6 +14,7 @@ export default () => {
                     <img src={arrow} alt={'arrow'}/>
                 </div>
                 <div className={s.browser_content}>
+                    <FileTile filename={"Добавить файл"} type={"+"}/>
                     <FileTile filename={"Лаба 1"} type={".pdf"}/>
                     <FileTile filename={"Лекционный материал"} type={".pdf"}/>
                     <FileTile filename={"Примеры прошлых годов"} type={".docx"}/>
