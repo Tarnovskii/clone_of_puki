@@ -4,13 +4,19 @@ import ArticleTile from "../models/ArticleTile";
 import arrow from "../../img/arrow.svg";
 import {mapStateToProps} from "../../utils/storeUtils/stateToProps";
 import {connect} from "react-redux";
+import TeacherTaskModal from "../../containers/models/TeacherTaskModal";
+import TeacherNewsModal from "../../containers/models/TeacherNewsModal";
+import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
 
-export default connect(mapStateToProps())((props) => {
+export default connect(mapStateToProps(), mapDispatchToProps())((props) => {
     if (props.type === 'medium') return (
         <section className={s.news_line}>
             <h3 className={s.bh3}>Новостная лента</h3>
             {props.userState.userRole === 'TEACHER'
-                ? <button className={s.active_button}> Добавить новость </button>
+                ? <button className={s.active_button} onClick={() => {
+                    props.modalActions.updateModalContent(TeacherNewsModal)
+                    props.modalActions.updateModalState(true)
+                }}> Добавить новость </button>
                 : null
             }
             <ArticleTile type={"medium"}/>
