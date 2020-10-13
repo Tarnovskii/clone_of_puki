@@ -21,4 +21,5 @@ public class AuthenticationRestControllerExceptionHandler {
     public String handleValidationExceptions(BadCredentialsException e) {
         return e.getMessage();
     }
+
 }

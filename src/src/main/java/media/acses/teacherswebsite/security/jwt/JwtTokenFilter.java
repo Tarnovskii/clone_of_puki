@@ -9,14 +9,18 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class JwtTokenFilter extends GenericFilterBean {
 
     private JwtTokenProvider jwtTokenProvider;
 
-    public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
+    private JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler;
+
+    public JwtTokenFilter(JwtTokenProvider jwtTokenProvider, JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler) {
         this.jwtTokenProvider = jwtTokenProvider;
+        this.jwtAuthenticationFailureHandler = jwtAuthenticationFailureHandler;
     }
 
     @Override
@@ -24,12 +28,16 @@ public class JwtTokenFilter extends GenericFilterBean {
             throws IOException, ServletException {
 
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
-        if (token != null && jwtTokenProvider.validateToken(token)) {
-            Authentication auth = jwtTokenProvider.getAuthentication(token);
+        try {
+            if (token != null && jwtTokenProvider.validateToken(token)) {
+                Authentication auth = jwtTokenProvider.getAuthentication(token);
 
-            if (auth != null) {
-                SecurityContextHolder.getContext().setAuthentication(auth);
+                if (auth != null) {
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                }
             }
+        } catch (JwtAuthenticationException e) {
+            jwtAuthenticationFailureHandler.onAuthenticationFailure((HttpServletRequest) req, (HttpServletResponse) res, e);
         }
         filterChain.doFilter(req, res);
     }
