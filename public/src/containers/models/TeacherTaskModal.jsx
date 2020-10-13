@@ -51,7 +51,7 @@ export default connect(null, mapDispatchToProps())(class extends React.Component
         return (
             <div className={s.content_wrapper}>
                 <div className={s.content_header}>
-                    <input value={this.state.title}/>
+                    <input className={s.title_field} value={this.state.title}/>
                     <img onClick={() => this.props.modalActions.updateModalState(false)} src={arrow}/>
                 </div>
                 <div className={s.task_settings}>
@@ -88,7 +88,7 @@ export default connect(null, mapDispatchToProps())(class extends React.Component
                 </div>
                 <fieldset className={s.task_description}>
                     <label htmlFor={'description'}>Описание:</label>
-                    <textarea name={'description'}/>
+                    <textarea className={s.description_field} name={'description'}/>
                 </fieldset>
                 <fieldset className={s.task_files_list}>
                     <label htmlFor={'file'}>Файлы:</label>
