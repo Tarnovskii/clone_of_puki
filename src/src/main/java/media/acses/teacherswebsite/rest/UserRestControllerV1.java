@@ -88,6 +88,24 @@ public class UserRestControllerV1 {
         }
     }
 
+    @PostMapping("activate")
+    public ResponseEntity activate(@RequestParam("user") String user, @RequestParam("token") String token) {
+        String result = securityService.validateVerificationToken(token);
+        if (result == null) {
+            if (user.equals("s")) {
+                studentService.activate(token);
+                return new ResponseEntity("account activated", HttpStatus.OK);
+            }
+            if (user.equals("t")) {
+                teacherService.activate(token);
+                return new ResponseEntity("account activated", HttpStatus.OK);
+            }
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        } else {
+            return new ResponseEntity("token is " + result, HttpStatus.FORBIDDEN);
+        }
+    }
+
     @GetMapping("isLogin")
     public ResponseEntity isLogin(HttpServletRequest request) {
         Claims claims = jwtTokenProvider.getBody(jwtTokenProvider.resolveToken(request));

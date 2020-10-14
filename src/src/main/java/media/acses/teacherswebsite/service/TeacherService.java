@@ -2,13 +2,16 @@ package media.acses.teacherswebsite.service;
 
 import media.acses.teacherswebsite.model.Teacher;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface TeacherService {
 
-    boolean register(Teacher teacher);
+    boolean register(Teacher teacher, HttpServletRequest request);
 
     void changePassword(String password, String token);
+
+    void activate(String token);
 
     List<Teacher> getAll();
 

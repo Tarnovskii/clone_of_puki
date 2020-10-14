@@ -21,6 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String ADMIN_ENDPOINT = "/api/v1/admin/**";
     private static final String AUTH_ENDPOINT = "/api/v1/auth/**";
+    private static final String RESET_PASSWORD_ENDPOINT = "/api/v1/user/resetPassword";
+    private static final String CONFIRM_PASSWORD_ENDPOINT = "/api/v1/user/confirmPassword";
+    private static final String ACTIVATE_ENDPOINT ="/api/v1/user/activate";
 
     @Autowired
     public SecurityConfig(
@@ -47,7 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(AUTH_ENDPOINT, "/api/v1/user/resetPassword", "/api/v1/user/confirmPassword").permitAll()
+                .antMatchers(
+                        AUTH_ENDPOINT,
+                        RESET_PASSWORD_ENDPOINT,
+                        CONFIRM_PASSWORD_ENDPOINT,
+                        ACTIVATE_ENDPOINT
+                ).permitAll()
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

@@ -38,4 +38,7 @@ public class Student extends BaseEntity implements Entity {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private Set<Role> studentRoles;
 
+    @Column(name = "enabled")
+    private boolean enabled;
+
 }

@@ -100,7 +100,7 @@ public class AuthenticationRestControllerV1 {
     }
 
     @PostMapping("register")
-    public ResponseEntity register(@RequestBody RegistrationRequestDto requestDto) throws UserExistsException {
+    public ResponseEntity register(@RequestBody RegistrationRequestDto requestDto, HttpServletRequest request) throws UserExistsException {
         if (studentService.findByUsername(requestDto.getUsername()) != null ||
             teacherService.findByUsername(requestDto.getUsername()) != null) {
             throw new UserExistsException("user with username: " + requestDto.getUsername() + " already exists");
@@ -119,12 +119,12 @@ public class AuthenticationRestControllerV1 {
         Entity entity = requestDto.fromDto();
 
         if (entity instanceof Teacher) {
-            if (teacherService.register((Teacher) entity)) {
-                return new ResponseEntity(HttpStatus.OK);
+            if (teacherService.register((Teacher) entity, request)) {
+                return new ResponseEntity("confirm account on email", HttpStatus.OK);
             }
         } else {
-            if (studentService.register((Student) entity)) {
-                return new ResponseEntity(HttpStatus.OK);
+            if (studentService.register((Student) entity, request)) {
+                return new ResponseEntity("confirm account on email", HttpStatus.OK);
             }
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);

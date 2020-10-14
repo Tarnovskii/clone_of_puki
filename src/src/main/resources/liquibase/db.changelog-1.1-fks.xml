@@ -113,4 +113,24 @@
                                  referencedColumnNames="id" />
     </changeSet>
 
+    <changeSet id="1.1.11" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="verification_token"
+                                 baseColumnNames="student_id"
+                                 constraintName="fk_verification_token_student_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="students"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+    <changeSet id="1.1.12" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="verification_token"
+                                 baseColumnNames="teacher_id"
+                                 constraintName="fk_verification_token_teacher_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="teachers"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
 </databaseChangeLog>

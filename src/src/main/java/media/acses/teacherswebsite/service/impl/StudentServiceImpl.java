@@ -3,18 +3,19 @@ package media.acses.teacherswebsite.service.impl;
 import media.acses.teacherswebsite.model.PasswordResetToken;
 import media.acses.teacherswebsite.model.Role;
 import media.acses.teacherswebsite.model.Student;
+import media.acses.teacherswebsite.model.VerificationToken;
 import media.acses.teacherswebsite.repository.PasswordResetTokenRepository;
 import media.acses.teacherswebsite.repository.RoleRepository;
 import media.acses.teacherswebsite.repository.StudentRepository;
+import media.acses.teacherswebsite.repository.VerificationTokenRepository;
+import media.acses.teacherswebsite.service.MailSenderService;
 import media.acses.teacherswebsite.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -23,22 +24,28 @@ public class StudentServiceImpl implements StudentService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
+    private final MailSenderService mailSenderService;
+    private final VerificationTokenRepository verificationTokenRepository;
 
     @Autowired
     public StudentServiceImpl(
             StudentRepository studentRepository,
             RoleRepository roleRepository,
             BCryptPasswordEncoder passwordEncoder,
-            PasswordResetTokenRepository passwordResetTokenRepository
+            PasswordResetTokenRepository passwordResetTokenRepository,
+            MailSenderService mailSenderService,
+            VerificationTokenRepository verificationTokenRepository
     ) {
         this.studentRepository = studentRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.passwordResetTokenRepository = passwordResetTokenRepository;
+        this.mailSenderService = mailSenderService;
+        this.verificationTokenRepository = verificationTokenRepository;
     }
 
     @Override
-    public boolean register(Student student) {
+    public boolean register(Student student, HttpServletRequest request) {
         Student studentFromDB = studentRepository.findByUsername(student.getUsername());
 
         if (studentFromDB != null) {
@@ -51,8 +58,12 @@ public class StudentServiceImpl implements StudentService {
 
         student.setStudentRoles(userRoles);
         student.setPassword(passwordEncoder.encode(student.getPassword()));
+        student.setEnabled(false);
 
         studentRepository.save(student);
+
+        String token = UUID.randomUUID().toString();
+        mailSenderService.sendVerificationMail(student, token, student.getEmail(), request);
 
         return true;
     }
@@ -64,6 +75,15 @@ public class StudentServiceImpl implements StudentService {
         student.setPassword(passwordEncoder.encode(password));
         studentRepository.save(student);
         passwordResetTokenRepository.delete(passwordResetToken);
+    }
+
+    @Override
+    public void activate(String token) {
+        VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
+        Student student = verificationToken.getStudent();
+        student.setEnabled(true);
+        studentRepository.save(student);
+        verificationTokenRepository.delete(verificationToken);
     }
 
     @Override
@@ -105,4 +125,5 @@ public class StudentServiceImpl implements StudentService {
         }
         return false;
     }
+
 }
