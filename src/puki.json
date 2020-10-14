@@ -1,0 +1,15 @@
+{
+  "name": "puki",
+  "script": "/usr/bin/java",
+  "args": [
+    "-Xmx72m",
+    "-XX:MaxRAM=72m",
+    "-Xss512k",
+    "-XX:+UseSerialGC",
+    "-jar",
+    "/home/srcs/TeachersWebSite/src/target/Puki-v0.01.jar",
+    "--spring.profiles.active=prod"
+  ],
+  "exec_interpreter": "",
+  "exec_mode": "fork"
+}
