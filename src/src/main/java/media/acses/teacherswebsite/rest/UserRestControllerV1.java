@@ -56,14 +56,14 @@ public class UserRestControllerV1 {
                 //student
                 String token = UUID.randomUUID().toString();
                 studentService.createPasswordResetToken(student, token);
-                mailSenderService.sendMail(email, "Reset Password", getResetPasswordMessage(request, student.getUsername(), token, "s"));
+                mailSenderService.sendResetPasswordMessage(token, email, student.getUsername(),"s", request);
                 return ResponseEntity.ok("mail send");
             }
         } else {
             //teacher
             String token = UUID.randomUUID().toString();
             teacherService.createPasswordResetToken(teacher, token);
-            mailSenderService.sendMail(email, "Reset Password", getResetPasswordMessage(request, teacher.getUsername(), token, "t"));
+            mailSenderService.sendResetPasswordMessage(token, email, teacher.getUsername(),"t", request);
             return ResponseEntity.ok("mail send");
         }
     }
@@ -125,13 +125,5 @@ public class UserRestControllerV1 {
         } else {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
-    }
-
-    private String getResetPasswordMessage(HttpServletRequest request, String username, String token, String userType) {
-        String newPassword = UUID.randomUUID().toString().substring(0, 8);
-        String url = request.getContextPath() + "/api/v1/user/confirmPassword?user=" + userType + "&password=" + newPassword + "&token=" + token;
-        String message = "Login: " + username + "\nNew password: " + newPassword + "\nConfirm new password change via link:";
-        String result = message + " \r\n" + url;
-        return result;
     }
 }

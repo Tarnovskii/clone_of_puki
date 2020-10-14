@@ -69,7 +69,7 @@ public class TeacherServiceImpl implements TeacherService {
     public void changePassword(String password, String token) {
         PasswordResetToken passwordResetToken = passwordResetTokenRepository.findByToken(token);
         Teacher teacher = passwordResetToken.getTeacher();
-        teacher.setPassword(passwordEncoder.encode(password));
+        teacher.setPassword(password);
         teacherRepository.save(teacher);
         passwordResetTokenRepository.delete(passwordResetToken);
     }
@@ -104,7 +104,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void createPasswordResetToken(Teacher teacher, String token) {
         PasswordResetToken resetToken = new PasswordResetToken(token, teacher);
-        resetToken.setExpiryDate(new Date());
+        resetToken.setExpiryDate(new Date(System.currentTimeMillis() + PasswordResetToken.getExpirationInMilliseconds()));
         passwordResetTokenRepository.save(resetToken);
     }
 

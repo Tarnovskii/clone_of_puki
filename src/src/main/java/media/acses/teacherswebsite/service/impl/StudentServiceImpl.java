@@ -72,7 +72,7 @@ public class StudentServiceImpl implements StudentService {
     public void changePassword(String password, String token) {
         PasswordResetToken passwordResetToken = passwordResetTokenRepository.findByToken(token);
         Student student = passwordResetToken.getStudent();
-        student.setPassword(passwordEncoder.encode(password));
+        student.setPassword(password);
         studentRepository.save(student);
         passwordResetTokenRepository.delete(passwordResetToken);
     }

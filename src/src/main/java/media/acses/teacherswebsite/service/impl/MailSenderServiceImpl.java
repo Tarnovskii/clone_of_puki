@@ -10,24 +10,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class MailSenderServiceImpl implements MailSenderService {
 
     private final JavaMailSender mailSender;
     private final VerificationTokenRepository verificationTokenRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Value("${spring.mail.username}")
     private String sender;
 
     @Autowired
-    public MailSenderServiceImpl(JavaMailSender mailSender, VerificationTokenRepository verificationTokenRepository) {
+    public MailSenderServiceImpl(
+            JavaMailSender mailSender,
+            VerificationTokenRepository verificationTokenRepository,
+            BCryptPasswordEncoder passwordEncoder
+    ) {
         this.mailSender = mailSender;
         this.verificationTokenRepository = verificationTokenRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -40,6 +48,17 @@ public class MailSenderServiceImpl implements MailSenderService {
         mailMessage.setText(message);
 
         mailSender.send(mailMessage);
+    }
+
+    @Override
+    public void sendResetPasswordMessage(String token, String email, String username, String userType, HttpServletRequest request) {
+        String newPassword = UUID.randomUUID().toString().substring(0, 8);
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        String url = request.getContextPath() + "/api/v1/user/confirmPassword?user=" + userType + "&password=" + encodedPassword + "&token=" + token;
+        String message = "Login: " + username + "\nNew password: " + newPassword + "\nConfirm new password change via link:";
+        String result = message + " \r\n" + url;
+
+        sendMail(email, "Reset Password", result);
     }
 
     @Override
