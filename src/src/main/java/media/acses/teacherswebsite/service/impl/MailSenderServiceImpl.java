@@ -54,9 +54,14 @@ public class MailSenderServiceImpl implements MailSenderService {
     public void sendResetPasswordMessage(String token, String email, String username, String userType, HttpServletRequest request) {
         String newPassword = UUID.randomUUID().toString().substring(0, 8);
         String encodedPassword = passwordEncoder.encode(newPassword);
-        String url = request.getContextPath() + "/api/v1/user/confirmPassword?user=" + userType + "&password=" + encodedPassword + "&token=" + token;
+        StringBuilder url = new StringBuilder();
+        url.append("http://koliada.in.ua/confirm?u=");
+        url.append(userType + UUID.randomUUID().toString().substring(0, 8));
+        url.append("&p1=" + encodedPassword.substring(0, encodedPassword.length() / 2));
+        url.append("&p1=" + encodedPassword.substring(encodedPassword.length() / 2));
+        url.append("&t=" + token);
         String message = "Login: " + username + "\nNew password: " + newPassword + "\nConfirm new password change via link:";
-        String result = message + " \r\n" + url;
+        String result = message + " \r\n" + url.toString();
 
         sendMail(email, "Reset Password", result);
     }
@@ -79,7 +84,12 @@ public class MailSenderServiceImpl implements MailSenderService {
     }
 
     private String getVerificationMessage(HttpServletRequest request, String userType, String token) {
-        String url = request.getContextPath() + "/api/v1/user/activate?user=" + userType + "&token=" + token;
+        StringBuilder url = new StringBuilder();
+        url.append("http://koliada.in.ua/activate?u=");
+        url.append(userType);
+        url.append("&o=DJA43kkjkrfnk");
+        url.append("&t=" + token);
+        url.append("&h=nvjdfnjyyt56");
         String message = "Activate your account via link\n";
         return message + url;
     }
