@@ -1,8 +1,9 @@
 package media.acses.teacherswebsite.service.impl;
 
+import media.acses.teacherswebsite.model.PasswordResetToken;
 import media.acses.teacherswebsite.model.Role;
 import media.acses.teacherswebsite.model.Student;
-import media.acses.teacherswebsite.repository.PasswordTokenRepository;
+import media.acses.teacherswebsite.repository.PasswordResetTokenRepository;
 import media.acses.teacherswebsite.repository.RoleRepository;
 import media.acses.teacherswebsite.repository.StudentRepository;
 import media.acses.teacherswebsite.service.StudentService;
@@ -10,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -20,19 +19,19 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-    private final PasswordTokenRepository passwordTokenRepository;
+    private final PasswordResetTokenRepository passwordResetTokenRepository;
 
     @Autowired
     public StudentServiceImpl(
             StudentRepository studentRepository,
             RoleRepository roleRepository,
             BCryptPasswordEncoder passwordEncoder,
-            PasswordTokenRepository passwordTokenRepository
+            PasswordResetTokenRepository passwordResetTokenRepository
     ) {
         this.studentRepository = studentRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
-        this.passwordTokenRepository = passwordTokenRepository;
+        this.passwordResetTokenRepository = passwordResetTokenRepository;
     }
 
     @Override
@@ -56,6 +55,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public void changePassword(String password, String token) {
+        PasswordResetToken passwordResetToken = passwordResetTokenRepository.findByToken(token);
+        Student student = passwordResetToken.getStudent();
+        student.setPassword(passwordEncoder.encode(password));
+        studentRepository.save(student);
+        passwordResetTokenRepository.delete(passwordResetToken);
+    }
+
+    @Override
     public List<Student> getAll() {
         List<Student> result = studentRepository.findAll();
         return result;
@@ -75,8 +83,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void createPasswordResetToken(Student student, String token) {
-//        PasswordResetToken resetToken = new PasswordResetToken(token, student);
-//        passwordTokenRepository.save(resetToken);
+        PasswordResetToken resetToken = new PasswordResetToken(token, student);
+        resetToken.setExpiryDate(new Date(System.currentTimeMillis() + PasswordResetToken.getExpirationInMilliseconds()));
+        passwordResetTokenRepository.save(resetToken);
     }
 
     @Override

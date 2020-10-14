@@ -93,5 +93,24 @@
                                  referencedColumnNames="id" />
     </changeSet>
 
+    <changeSet id="1.1.9" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="password_reset_token"
+                                 baseColumnNames="student_id"
+                                 constraintName="fk_password_reset_token_student_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="students"
+                                 referencedColumnNames="id" />
+    </changeSet>
+
+    <changeSet id="1.1.10" author="yuriy.paley">
+        <addForeignKeyConstraint baseTableName="password_reset_token"
+                                 baseColumnNames="teacher_id"
+                                 constraintName="fk_password_reset_token_teacher_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="teachers"
+                                 referencedColumnNames="id" />
+    </changeSet>
 
 </databaseChangeLog>

@@ -1,4 +1,4 @@
-package media.acses.teacherswebsite.security.jwt;
+package media.acses.teacherswebsite.hadnler;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;

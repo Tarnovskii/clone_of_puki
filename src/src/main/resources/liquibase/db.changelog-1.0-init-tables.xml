@@ -138,6 +138,24 @@
         </createTable>
     </changeSet>
 
-
+    <changeSet id="1.0.9" author="yuriy.paley">
+        <createTable tableName="password_reset_token">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="token" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="student_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="teacher_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="expiry_date" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>

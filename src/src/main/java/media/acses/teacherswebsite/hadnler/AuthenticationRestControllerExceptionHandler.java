@@ -1,4 +1,4 @@
-package media.acses.teacherswebsite.rest.exception;
+package media.acses.teacherswebsite.hadnler;
 
 import media.acses.teacherswebsite.exception.UserExistsException;
 import org.springframework.http.HttpStatus;

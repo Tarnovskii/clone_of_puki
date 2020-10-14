@@ -12,7 +12,7 @@
 	<artifactId>teachers-web-site</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TeachersWebSite</name>
-	<description>Demo project for Spring Boot</description>
+	<description>PUKI project</description>
 	<packaging>jar</packaging>
 
 	<properties>

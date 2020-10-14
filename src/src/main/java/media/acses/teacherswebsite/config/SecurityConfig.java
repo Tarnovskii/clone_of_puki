@@ -1,6 +1,7 @@
 package media.acses.teacherswebsite.config;
 
-import media.acses.teacherswebsite.security.jwt.JwtAuthenticationFailureHandler;
+import media.acses.teacherswebsite.hadnler.LogoutSuccessHandler;
+import media.acses.teacherswebsite.hadnler.JwtAuthenticationFailureHandler;
 import media.acses.teacherswebsite.security.jwt.JwtConfigurer;
 import media.acses.teacherswebsite.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler;
+    private final LogoutSuccessHandler logoutSuccessHandler;
 
     private static final String ADMIN_ENDPOINT = "/api/v1/admin/**";
     private static final String AUTH_ENDPOINT = "/api/v1/auth/**";
 
     @Autowired
-    public SecurityConfig(JwtTokenProvider jwtTokenProvider, JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler) {
+    public SecurityConfig(
+            JwtTokenProvider jwtTokenProvider,
+            JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler,
+            LogoutSuccessHandler logoutSuccessHandler
+    ) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.jwtAuthenticationFailureHandler = jwtAuthenticationFailureHandler;
+        this.logoutSuccessHandler = logoutSuccessHandler;
     }
 
     @Bean
@@ -40,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(AUTH_ENDPOINT).permitAll()
+                .antMatchers(AUTH_ENDPOINT, "/api/v1/user/resetPassword", "/api/v1/user/confirmPassword").permitAll()
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

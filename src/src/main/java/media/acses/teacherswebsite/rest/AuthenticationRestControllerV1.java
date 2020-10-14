@@ -5,6 +5,7 @@ import media.acses.teacherswebsite.dto.RegistrationRequestDto;
 import media.acses.teacherswebsite.exception.UserExistsException;
 import media.acses.teacherswebsite.model.Class;
 import media.acses.teacherswebsite.model.*;
+import media.acses.teacherswebsite.security.jwt.JwtStorage;
 import media.acses.teacherswebsite.security.jwt.JwtTokenProvider;
 import media.acses.teacherswebsite.service.AccessKeyService;
 import media.acses.teacherswebsite.service.ClassService;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -55,7 +57,7 @@ public class AuthenticationRestControllerV1 {
     }
 
     @PostMapping("login")
-    public ResponseEntity login(@RequestBody AuthenticationRequestDto authenticationRequestDto) {
+    public ResponseEntity login(@RequestBody AuthenticationRequestDto authenticationRequestDto, HttpServletRequest request) {
         try {
             String username = authenticationRequestDto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, authenticationRequestDto.getPassword()));
@@ -68,6 +70,7 @@ public class AuthenticationRestControllerV1 {
                 if (student == null) {
                     throw new UsernameNotFoundException("User with username: " + username + " not found");
                 } else {
+                    //student
                     roles = student.getStudentRoles();
                     response.put("username", student.getUsername());
                     response.put("email", student.getEmail());
@@ -77,6 +80,7 @@ public class AuthenticationRestControllerV1 {
                     response.put("group", student.getGroup());
                 }
             } else {
+                //teacher
                 roles = teacher.getTeacherRoles();
                 response.put("username", teacher.getUsername());
                 response.put("email", teacher.getEmail());
@@ -85,6 +89,8 @@ public class AuthenticationRestControllerV1 {
             }
 
             String token = jwtTokenProvider.createToken(username, roles);
+            JwtStorage.addToken(token, request.getRemoteAddr());
+
             response.put("token", token);
 
             return ResponseEntity.ok(response);

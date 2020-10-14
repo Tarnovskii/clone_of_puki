@@ -1,4 +1,4 @@
-package media.acses.teacherswebsite.security.jwt;
+package media.acses.teacherswebsite.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

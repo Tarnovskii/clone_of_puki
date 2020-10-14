@@ -1,6 +1,7 @@
 package media.acses.teacherswebsite.security.jwt;
 
 import io.jsonwebtoken.*;
+import media.acses.teacherswebsite.exception.JwtAuthenticationException;
 import media.acses.teacherswebsite.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -79,7 +80,7 @@ public class JwtTokenProvider {
         return null;
     }
 
-    public boolean validateToken(String token) throws JwtAuthenticationException {
+    public boolean validateToken(String token, String remoteAddr) throws JwtAuthenticationException {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
 
@@ -87,7 +88,15 @@ public class JwtTokenProvider {
                 return false;
             }
 
-            return true;
+            if (JwtStorage.getTokenByAddr(remoteAddr) != null) {
+                if (JwtStorage.getTokenByAddr(remoteAddr).equals(token)) {
+                    return true;
+                } else {
+                    throw new JwtAuthenticationException("JWT token is expired or invalid");
+                }
+            } else {
+                throw new JwtAuthenticationException("JWT token is expired or invalid");
+            }
         } catch (JwtException | IllegalArgumentException e) {
             throw new JwtAuthenticationException("JWT token is expired or invalid");
         }

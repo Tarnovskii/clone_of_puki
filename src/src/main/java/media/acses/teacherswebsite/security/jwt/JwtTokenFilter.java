@@ -1,5 +1,7 @@
 package media.acses.teacherswebsite.security.jwt;
 
+import media.acses.teacherswebsite.exception.JwtAuthenticationException;
+import media.acses.teacherswebsite.hadnler.JwtAuthenticationFailureHandler;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
@@ -29,9 +31,9 @@ public class JwtTokenFilter extends GenericFilterBean {
 
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
         try {
-            if (token != null && jwtTokenProvider.validateToken(token)) {
+            String remoteAddr = getClientIp((HttpServletRequest) req);
+            if (token != null && jwtTokenProvider.validateToken(token, remoteAddr)) {
                 Authentication auth = jwtTokenProvider.getAuthentication(token);
-
                 if (auth != null) {
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }
@@ -40,6 +42,17 @@ public class JwtTokenFilter extends GenericFilterBean {
             jwtAuthenticationFailureHandler.onAuthenticationFailure((HttpServletRequest) req, (HttpServletResponse) res, e);
         }
         filterChain.doFilter(req, res);
+    }
+
+    private String getClientIp(HttpServletRequest request) {
+        String remoteAddr = "";
+        if (request != null) {
+            remoteAddr = request.getHeader("X-FORWARDED-FOR");
+            if (remoteAddr == null || "".equals(remoteAddr)) {
+                remoteAddr = request.getRemoteAddr();
+            }
+        }
+        return remoteAddr;
     }
 
 }

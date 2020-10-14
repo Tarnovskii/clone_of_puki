@@ -3,8 +3,8 @@ package media.acses.teacherswebsite.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -13,18 +13,33 @@ import java.util.Date;
 @NoArgsConstructor
 public class PasswordResetToken extends BaseEntity {
 
-    private static final int EXPIRATION = 60 * 24;
+    private static final long EXPIRATION_IN_MILLISECONDS = 15 * 60 * 1000;
 
+    @Column(name = "token")
     private String token;
 
-//    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-//    @JoinColumn(nullable = false, name = "user_id")
-//    private User user;
+    @OneToOne(targetEntity = Student.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "student_id")
+    private Student student;
 
+    @OneToOne(targetEntity = Teacher.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
+    @Column(name = "expiry_date")
     private Date expiryDate;
 
-//    public PasswordResetToken(String token, User user) {
-//        this.token = token;
-//        this.user = user;
-//    }
+    public PasswordResetToken(String token, Student student) {
+        this.token = token;
+        this.student = student;
+    }
+
+    public PasswordResetToken(String token, Teacher teacher) {
+        this.token = token;
+        this.teacher = teacher;
+    }
+
+    public static long getExpirationInMilliseconds() {
+        return EXPIRATION_IN_MILLISECONDS;
+    }
 }

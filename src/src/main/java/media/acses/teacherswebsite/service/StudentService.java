@@ -8,6 +8,8 @@ public interface StudentService {
 
     boolean register(Student student);
 
+    void changePassword(String password, String token);
+
     List<Student> getAll();
 
     Student findByUsername(String username);
