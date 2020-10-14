@@ -7,26 +7,13 @@ import UsefullLinks from "../global/UsefullLinks";
 import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
 import {connect} from "react-redux";
 import TeacherTaskModal from "../../containers/models/TeacherTaskModal";
+import Calendar from "../../containers/global/Calendar";
 
 export default connect(null, mapDispatchToProps())((props) => {
     return (
         <main className={s.wrapper}>
             <section className={s.content}>
-                <div className={s.calendar}>
-                    <h3 className={s.bh3}>Календарь событий</h3>
-                    <div className={s.calendar_header}>
-                        <div className={s.controller}>
-                            <img src={arrow}/> Октябрь 2020 <img src={arrow}/>
-                        </div>
-                        <button className={s.active_button} onClick={() => {
-                            props.modalActions.updateModalContent(TeacherTaskModal)
-                            props.modalActions.updateModalState(true)
-                        }}>
-                            Добавить событие
-                        </button>
-                    </div>
-                    Тут будет календарь
-                </div>
+                <Calendar/>
                 <div className={s.global_db}>
                     <h3 className={s.bh3}>Глобальная база данных</h3>
                     <div className={s.bd_actions}>

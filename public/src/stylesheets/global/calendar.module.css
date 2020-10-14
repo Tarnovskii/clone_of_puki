@@ -36,47 +36,22 @@
   min-width: 140px;
 }
 
-.wrapper {
-  background: white;
-  max-width: 1040px;
-  padding-bottom: 50px;
-  min-height: inherit;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  margin-left: auto;
-  margin-right: auto;
+.calendar .bh3 {
+  font-weight: bold;
+  margin-left: 50px;
+  font-size: 22px;
+}
+.calendar iframe {
+  border: none;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.28);
+  width: 100%;
+  height: 600px;
 }
 
-.banner {
-  height: 200px;
-  background: #243E49;
+.calendar_header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  color: white;
-  font-size: 48px;
-  background: url("../../img/bannerImages/banner1.jpg") no-repeat center center;
-  background-size: cover;
-  box-shadow: 0px 3px 5px -4px rgba(0, 0, 0, 0.75);
-}
-.banner h2 {
-  background: rgba(0, 0, 0, 0.5);
-  display: block;
-  text-align: left;
-  position: absolute;
-  font-weight: bold;
-  padding: 10px 30px 10px 80px;
-  color: #FFFFFF;
-  text-shadow: 0px 4px 4px #000000;
-}
-
-.content {
-  padding: 50px 70px 70px;
-}
-.content .bh3 {
-  margin-bottom: 50px;
-  font-weight: 200;
-}
-.content .bh3 span {
-  font-weight: bold;
 }
 
 .controller {
@@ -84,13 +59,15 @@
   align-items: center;
   justify-content: space-between;
   filter: contrast(0.7);
-  max-width: 200px;
+  max-width: 250px;
   margin-left: 50px;
   margin-top: 20px;
   margin-bottom: 20px;
   font-weight: bold;
 }
 .controller img {
+  margin-left: 10px;
+  margin-right: 10px;
   display: block;
   cursor: pointer;
 }
@@ -98,13 +75,27 @@
   transform: rotate(180deg);
 }
 
-.progress {
-  margin-top: 50px;
-  margin-bottom: 100px;
-}
-.progress b {
-  margin-left: 50px;
-  font-size: 22px;
+.calendar_table {
+  padding: 50px;
+  height: 500px;
+  background: #243E49;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: normal;
 }
 
-/*# sourceMappingURL=userProfile.module.css.map */
+.calendar_table_active_cell {
+  border: 1px solid #BEBEBE;
+  height: 50px;
+  width: 50px;
+  background: white;
+}
+
+.calendar_table_default_cell {
+  border: 1px solid #BEBEBE;
+  height: 50px;
+  width: 50px;
+  background: #BEBEBE;
+}
+
+/*# sourceMappingURL=calendar.module.css.map */

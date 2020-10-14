@@ -37,28 +37,12 @@
   padding: 50px 70px 70px;
 
   .bh3 {
+    margin-bottom: 50px;
     font-weight: 200;
 
     span {
       font-weight: bold;
     }
-  }
-}
-
-.calendar {
-  margin-top: 50px;
-
-  .bh3 {
-    font-weight: bold;
-    margin-left: 50px;
-    font-size: 22px;
-  }
-
-  iframe {
-    border: none;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.28);
-    width: 100%;
-    height: 600px;
   }
 }
 

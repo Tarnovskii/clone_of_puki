@@ -10,7 +10,7 @@ export default connect(mapStateToProps())(class extends React.Component {
             this.windowOffset = 0;
         }
 
-    render() {
+        render() {
             if (this.props.modalState.isOpen) {
                 this.windowOffset = window.scrollY;
                 document.body.setAttribute('style', `position: fixed; top: -${this.windowOffset}px; left: 0; right: 0;`)

@@ -10,6 +10,6 @@ export const initialState = {
     modalState: {
         isOpen: false,
         modalContent: null,
-    }
+    },
 }
 
