@@ -3,8 +3,8 @@ package media.acses.teacherswebsite.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity

@@ -1,8 +1,6 @@
 package media.acses.teacherswebsite.rest;
 
-import com.sun.org.apache.regexp.internal.RE;
 import io.jsonwebtoken.Claims;
-import liquibase.pro.packaged.S;
 import media.acses.teacherswebsite.model.Student;
 import media.acses.teacherswebsite.model.Teacher;
 import media.acses.teacherswebsite.security.jwt.JwtStorage;

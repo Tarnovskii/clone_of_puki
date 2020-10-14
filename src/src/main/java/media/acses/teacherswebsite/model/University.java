@@ -2,8 +2,8 @@ package media.acses.teacherswebsite.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 

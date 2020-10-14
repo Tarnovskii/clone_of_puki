@@ -2,7 +2,6 @@ package media.acses.teacherswebsite.service.impl;
 
 import media.acses.teacherswebsite.model.PasswordResetToken;
 import media.acses.teacherswebsite.model.Role;
-import media.acses.teacherswebsite.model.Student;
 import media.acses.teacherswebsite.model.Teacher;
 import media.acses.teacherswebsite.repository.PasswordResetTokenRepository;
 import media.acses.teacherswebsite.repository.RoleRepository;
@@ -12,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {

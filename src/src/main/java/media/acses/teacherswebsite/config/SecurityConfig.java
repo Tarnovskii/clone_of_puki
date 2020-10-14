@@ -1,7 +1,7 @@
 package media.acses.teacherswebsite.config;
 
-import media.acses.teacherswebsite.hadnler.LogoutSuccessHandler;
 import media.acses.teacherswebsite.hadnler.JwtAuthenticationFailureHandler;
+import media.acses.teacherswebsite.hadnler.LogoutSuccessHandler;
 import media.acses.teacherswebsite.security.jwt.JwtConfigurer;
 import media.acses.teacherswebsite.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;

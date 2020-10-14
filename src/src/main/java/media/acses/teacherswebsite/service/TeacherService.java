@@ -1,6 +1,5 @@
 package media.acses.teacherswebsite.service;
 
-import media.acses.teacherswebsite.model.Student;
 import media.acses.teacherswebsite.model.Teacher;
 
 import java.util.List;
