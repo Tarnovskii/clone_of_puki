@@ -7,6 +7,7 @@ import arrow from "../../img/arrow.svg";
 import TeacherTaskModal from "../models/TeacherTaskModal";
 import {getMonthName} from "../../utils/getMonthnameByNumber";
 import {mergeProps} from "../../utils/storeUtils/propsCombiner";
+import CalendarTile from "../../components/models/CalendarTile";
 
 const events = [
     {
@@ -61,7 +62,6 @@ export default connect(mapStateToProps(), mapDispatchToProps(), mergeProps)(clas
 
     createCalendarTable = () => {
         const days = new Date().daysInMonth(this.state.currentYear, this.state.currentMonth)
-        const currentDate = `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`
         const date = new Date(this.state.currentYear, this.state.currentMonth, 0);
         let datesCollection = []
         for (let i = 1; i <= days; i++) {
@@ -73,15 +73,8 @@ export default connect(mapStateToProps(), mapDispatchToProps(), mergeProps)(clas
             <section className={s.calendar_table}>
                 {datesCollection.map((date, index) => {
                     const eventsList = events.filter(e => e.date === date);
-                    const className = currentDate === date ? s.calendar_table_default_cell : s.calendar_table_active_cell
-
                     return (
-                        <div onClick={() => this.openScheduler(date)} className={className} id={date} key={index}>
-                            <span className={s.cell_title}>{index + 1}</span>
-                            {eventsList.map((e) => {
-                                return <p>{e.title}</p>
-                            })}
-                        </div>
+                        <CalendarTile date={date} eventsList={eventsList} index={index}/>
                     )
                 })}
             </section>
