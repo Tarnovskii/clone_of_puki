@@ -8,8 +8,8 @@ import {Provider} from "react-redux";
 import {store} from "./store/store";
 
 // eslint-disable-next-line no-extend-native
-Date.prototype.daysInMonth = function() {
-    return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
+Date.prototype.daysInMonth = function(year, month) {
+    return 33 - new Date(year || this.getFullYear(), month || this.getMonth(), 33).getDate();
 };
 
 ReactDOM.render(
