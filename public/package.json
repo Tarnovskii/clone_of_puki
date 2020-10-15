@@ -38,7 +38,13 @@
       "last 1 safari version"
     ]
   },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-react-jsx"
+    ]
+  },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
     "react-transition-group": "^4.4.1"
   }
 }
