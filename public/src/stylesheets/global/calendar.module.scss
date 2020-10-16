@@ -54,6 +54,7 @@
 }
 
 .calendar_table_active_cell, .calendar_table_default_cell {
+  overflow: hidden;
   transition: 0.2s all;
   border-collapse: collapse;
   display: table-cell;
@@ -66,10 +67,63 @@
 
   &:hover {
     color: white;
-    background: rgba(36, 62, 73, 1)
+    background: rgba(36, 62, 73, 1);
+
+    .cell_title:before {
+      border: 1px solid white;
+    }
   }
+
+}
+
+.cell_date {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.4em;
 }
 
 .cell_title {
-  font-size: 1.4em;
+  margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  padding-left: 25px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    left: 0;
+    margin-left: 5px;
+    padding: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 100%;
+  }
+
+  &[type="lab"] {
+    &:before {
+      background: darkblue;
+    }
+  }
+
+  &[type="kr"] {
+    &:before {
+      background: darkred;
+    }
+  }
+
+  &[type="pr"] {
+    &:before {
+      background: yellow;
+    }
+  }
+
+  &[type="lec"] {
+    &:before {
+      background: green;
+    }
+  }
 }

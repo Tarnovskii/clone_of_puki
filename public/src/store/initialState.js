@@ -11,5 +11,8 @@ export const initialState = {
         isOpen: false,
         modalContent: null,
     },
+    calendarState: {
+        events: [],
+    }
 }
 

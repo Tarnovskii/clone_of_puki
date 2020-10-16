@@ -4,7 +4,6 @@ import ArticleTile from "../models/ArticleTile";
 import arrow from "../../img/arrow.svg";
 import {mapStateToProps} from "../../utils/storeUtils/stateToProps";
 import {connect} from "react-redux";
-import TeacherTaskModal from "../../containers/models/TeacherTaskModal";
 import TeacherNewsModal from "../../containers/models/TeacherNewsModal";
 import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
 

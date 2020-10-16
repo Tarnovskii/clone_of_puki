@@ -13,54 +13,7 @@ export default (props) => {
                 <div className={s.table_wrapper}>
                     <table cellPadding={0} cellSpacing={0}>
                         <tr>
-                            {perfomanceTile({
-                                date: "01.02",
-                                type: "lec",
-                                mark: 2,
-                                maxMark: 10,
-                            })}
-                            {perfomanceTile({
-                                date: "01.02",
-                                type: "lab",
-                                mark: 5,
-                                maxMark: 10,
-                            })}
-                            {perfomanceTile({
-                                date: "01.02",
-                                type: "kr",
-                                mark: 8,
-                                maxMark: 10,
-                            })}
-                            {perfomanceTile({
-                                date: "01.02",
-                                type: "pr",
-                                mark: 10,
-                                maxMark: 15,
-                            })}
-                            {perfomanceTile({
-                                date: "01.02",
-                                type: "lec",
-                                mark: 2,
-                                maxMark: 15,
-                            })}
-                            {perfomanceTile({
-                                date: "01.02",
-                                type: "lab",
-                                mark: 5,
-                                maxMark: 6,
-                            })}
-                            {perfomanceTile({
-                                date: "01.02",
-                                type: "kr",
-                                mark: 8,
-                                maxMark: 20,
-                            })}
-                            {perfomanceTile({
-                                date: "01.02",
-                                type: "pr",
-                                mark: 17,
-                                maxMark: 18,
-                            })}
+
                         </tr>
                     </table>
                 </div>
@@ -71,7 +24,6 @@ export default (props) => {
 }
 
 const perfomanceTile = (data) => {
-
     let result = data.mark / data.maxMark;
     let coff = result < 0.3 ? "bad" : result <= 0.6 ? "ok" : result <= 0.8 ? "good" : "perfect"
 

@@ -4,28 +4,10 @@ import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
 import {connect} from "react-redux";
 import s from '../../stylesheets/global/calendar.module.css';
 import arrow from "../../img/arrow.svg";
-import TeacherTaskModal from "../models/TeacherTaskModal";
+import TeacherTaskModal from "../models/TeacherTaskModalCreator";
 import {getMonthName} from "../../utils/getMonthnameByNumber";
 import {mergeProps} from "../../utils/storeUtils/propsCombiner";
 import CalendarTile from "../../components/models/CalendarTile";
-
-const events = [
-    {
-        id: 0,
-        date: '15/10/2020',
-        title: 'Hallo'
-    },
-    {
-        id: 3,
-        date: '21/10/2020',
-        title: 'Hallo2'
-    },
-    {
-        id: 2,
-        date: '2/11/2020',
-        title: 'Hallo3'
-    }
-]
 
 export default connect(mapStateToProps(), mapDispatchToProps(), mergeProps)(class extends React.Component {
     constructor(props) {
@@ -56,10 +38,6 @@ export default connect(mapStateToProps(), mapDispatchToProps(), mergeProps)(clas
         })
     }
 
-    openScheduler = (date) => {
-        console.log(events.filter(e => e.date === date));
-    }
-
     createCalendarTable = () => {
         const days = new Date().daysInMonth(this.state.currentYear, this.state.currentMonth)
         const date = new Date(this.state.currentYear, this.state.currentMonth, 0);
@@ -72,10 +50,9 @@ export default connect(mapStateToProps(), mapDispatchToProps(), mergeProps)(clas
         return (
             <section className={s.calendar_table}>
                 {datesCollection.map((date, index) => {
-                    const eventsList = events.filter(e => e.date === date);
-                    return (
-                        <CalendarTile date={date} eventsList={eventsList} index={index}/>
-                    )
+                    return <CalendarTile key={index} date={date}
+                                         eventsList={this.props.calendarState.events.filter(e => e.date === date)}
+                                         index={index}/>
                 })}
             </section>
         )

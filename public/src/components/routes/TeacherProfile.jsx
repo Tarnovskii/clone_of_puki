@@ -1,12 +1,10 @@
 import React from 'react'
 import s from "../../stylesheets/routes/teacherProfile.module.css";
-import arrow from "../../img/arrow.svg";
 import News from "../global/News";
 import FileBrowser from "../global/FileBrowser";
 import UsefullLinks from "../global/UsefullLinks";
 import {mapDispatchToProps} from "../../utils/storeUtils/dispatchToProps";
 import {connect} from "react-redux";
-import TeacherTaskModal from "../../containers/models/TeacherTaskModal";
 import Calendar from "../../containers/global/Calendar";
 
 export default connect(null, mapDispatchToProps())((props) => {

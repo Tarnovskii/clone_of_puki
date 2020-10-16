@@ -86,6 +86,7 @@
 }
 
 .calendar_table_active_cell, .calendar_table_default_cell {
+  overflow: hidden;
   transition: 0.2s all;
   border-collapse: collapse;
   display: table-cell;
@@ -99,9 +100,47 @@
   color: white;
   background: #243e49;
 }
+.calendar_table_active_cell:hover .cell_title:before, .calendar_table_default_cell:hover .cell_title:before {
+  border: 1px solid white;
+}
+
+.cell_date {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.4em;
+}
 
 .cell_title {
-  font-size: 1.4em;
+  margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  padding-left: 25px;
+}
+.cell_title:before {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  left: 0;
+  margin-left: 5px;
+  padding: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 100%;
+}
+.cell_title[type=lab]:before {
+  background: darkblue;
+}
+.cell_title[type=kr]:before {
+  background: darkred;
+}
+.cell_title[type=pr]:before {
+  background: yellow;
+}
+.cell_title[type=lec]:before {
+  background: green;
 }
 
 /*# sourceMappingURL=calendar.module.css.map */
